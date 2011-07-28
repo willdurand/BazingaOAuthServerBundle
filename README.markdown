@@ -1,3 +1,11 @@
+    /!\ This bundle is not yet perfectly unit tested (well, in fact it's not unit tested except for signatures...)
+    You should not use it but you can provide tests or ideas. I'll do my best to provide strong unit tests.
+
+    OH, one more thing: I don't manage nonce/timestamp yet.
+
+    WTF ?!! Why did I release that ? Just to prove there is not only a README and it's more convenient for me to work with Github.
+
+
 BazingaOAuthBundle
 ==================
 
@@ -5,15 +13,14 @@ This bundle provides all you need to manage OAuth in a server side way.
 
 This bundle implements the **OAuth v1.0** protocol based on the **RFC 5849**.
 
-
-**NOTE: for now, there is no implementation of the Model. You have to implement all interfaces
-in the `Model/` folder.** and the logic behind.
+**NOTE: for now, there is no implementation of the Model. You have to implement all interfaces in
+the `Model/` folder and the logic behind.**
 
 
 ## Installation
 As usual, add this bundle to your submodules:
 
-    git submodule add git:/github.com/Bazinga/BazingaOAuthBundle.git vendor/bundles/Bazinga/OAuthBundle
+    git submodule add git://github.com/Bazinga/BazingaOAuthBundle.git vendor/bundles/Bazinga/OAuthBundle
 
 Register the namespace in `app/autoload.php`:
 
@@ -144,7 +151,7 @@ you to the authentication mechanism you just configured.
 
 ## Usage
 To secure a part of your application by using OAuth, you just have to declare a new pattern
-in the **firewall* configuration:
+in the **firewall** configuration:
 
 ``` yaml
 # app/config/security.yml
