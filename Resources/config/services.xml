@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <!-- Controller -->
+        <parameter key="bazinga.oauth.controller.server.class">Bazinga\OAuthBundle\Controller\ServerController</parameter>
+        <parameter key="bazinga.oauth.controller.login.class">Bazinga\OAuthBundle\Controller\LoginController</parameter>
+        <!-- OAuth server service -->
+        <parameter key="bazinga.oauth.server_service.class">Bazinga\OAuthBundle\Service\OAuthServerService</parameter>
+        <parameter key="bazinga.xauth.server_service.class">Bazinga\OAuthBundle\Service\XAuthServerService</parameter>
+        <!-- Signatures -->
+        <parameter key="bazinga.oauth.signature.plaintext.class">Bazinga\OAuthBundle\Service\Signature\OAuthPlainTextSignature</parameter>
+        <parameter key="bazinga.oauth.signature.hmac_sha1.class">Bazinga\OAuthBundle\Service\Signature\OAuthHmacSha1Signature</parameter>
+        <!-- Authentification -->
+        <parameter key="bazinga.oauth.security.authentication.provider.class">Bazinga\OAuthBundle\Security\Authentification\Provider\OAuthProvider</parameter>
+        <parameter key="bazinga.oauth.security.authentication.listener.class">Bazinga\OAuthBundle\Security\Firewall\OAuthListener</parameter>
+        <!-- Event listener -->
+        <parameter key="bazinga.oauth.event_listener.request.class">Bazinga\OAuthBundle\EventListener\OAuthRequestListener</parameter>
+        <parameter key="bazinga.oauth.event_listener.exception.class">Bazinga\OAuthBundle\EventListener\OAuthExceptionListener</parameter>
+    </parameters>
+
+    <services>
+        <!-- Controller -->
+        <service id="bazinga.oauth.controller.server" class="%bazinga.oauth.controller.server.class%" scope="request">
+            <argument type="service" id="router" />
+            <argument type="service" id="templating" />
+            <argument type="service" id="request" />
+            <argument type="service" id="bazinga.oauth.server_service" />
+            <argument></argument> <!-- token provider -->
+        </service>
+        <service id="bazinga.oauth.controller.login" class="%bazinga.oauth.controller.login.class%" scope="request">
+            <argument type="service" id="templating" />
+            <argument type="service" id="security.context" />
+            <argument type="service" id="request" />
+            <argument></argument> <!-- token provider -->
+        </service>
+        <!-- OAuth server service -->
+        <service id="bazinga.oauth.server_service" class="%bazinga.oauth.server_service.class%">
+            <argument></argument> <!-- consumer provider -->
+            <argument></argument> <!-- token provider -->
+            <argument type="service" id="logger" />
+        </service>
+        <service id="bazinga.xauth.server_service" class="%bazinga.xauth.server_service.class%">
+            <argument></argument> <!-- consumer provider -->
+            <argument></argument> <!-- token provider -->
+            <argument type="service" id="logger" />
+        </service>
+        <!-- Signatures -->
+        <service id="bazinga.oauth.signature.plaintext" class="%bazinga.oauth.signature.plaintext.class%">
+            <tag name="oauth.signature_service" />
+        </service>
+        <service id="bazinga.oauth.signature.hmac_sha1" class="%bazinga.oauth.signature.hmac_sha1.class%">
+            <tag name="oauth.signature_service" />
+        </service>
+        <!-- Authentification -->
+        <service id="bazinga.oauth.security.authentication.provider"
+            class="%bazinga.oauth.security.authentication.provider.class%" public="false">
+            <argument /> <!-- user provider -->
+            <argument type="service" id="bazinga.oauth.server_service" />
+            <argument></argument> <!-- token provider -->
+        </service>
+        <service id="bazinga.oauth.security.authentication.listener"
+            class="%bazinga.oauth.security.authentication.listener.class%" public="false">
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="security.authentication.manager" />
+        </service>
+        <!-- Event listener -->
+        <service id="bazinga.oauth.event_listener.request" class="%bazinga.oauth.event_listener.request.class%">
+            <tag name="kernel.event_listener" event="kernel.request" method="onEarlyKernelRequest" priority="255" />
+        </service>
+        <service id="bazinga.oauth.event_listener.exception" class="%bazinga.oauth.event_listener.exception.class%">
+            <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
+        </service>
+    </services>
+</container>

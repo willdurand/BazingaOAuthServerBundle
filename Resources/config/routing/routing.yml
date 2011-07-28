@@ -1,0 +1,23 @@
+bazinga_oauth_server_requesttoken:
+    pattern:    /oauth/v1/request_token
+    defaults:   { _controller: bazinga.oauth.controller.server:requestTokenAction }
+    requirements:
+        _method:    GET|POST
+
+bazinga_oauth_server_authorize:
+    pattern:    /oauth/v1/authorize
+    defaults:   { _controller: bazinga.oauth.controller.server:authorizeAction }
+    requirements:
+        _method:    GET|POST
+
+bazinga_oauth_server_accesstoken:
+    pattern:    /oauth/v1/access_token
+    defaults:   { _controller: bazinga.oauth.controller.server:accessTokenAction }
+    requirements:
+        _method:    GET|POST
+
+bazinga_oauth_login_allow:
+    pattern:    /oauth/login/allow
+    defaults:   { _controller: bazinga.oauth.controller.login:allowAction }
+    requirements:
+        _method:    GET

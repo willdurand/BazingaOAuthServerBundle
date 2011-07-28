@@ -1,0 +1,11 @@
+<div>
+    <p>Do you want to authorize <strong>{{ consumer.name }}</strong> access your informations ?</p>
+
+    <form action="{{ url('bazinga_oauth_server_authorize') }}" method="POST">
+        <input type="hidden" name="oauth_token" value="{{ oauth_token }}" />
+        <input type="hidden" name="oauth_callback" value="{{ oauth_callback }}" />
+
+        <input type="submit" name="submit_false" value="Non" />
+        <input type="submit" name="submit_true" value="Oui" />
+    </form>
+</div>
