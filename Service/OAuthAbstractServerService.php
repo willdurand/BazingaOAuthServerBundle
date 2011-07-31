@@ -275,6 +275,10 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
      */
     protected function normalizeRequestParameters($requestParameters)
     {
+        if (null === $requestParameters) {
+            return '';
+        }
+
         ksort($requestParameters);
 
         $normalizedParameters = array();
