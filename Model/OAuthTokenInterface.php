@@ -1,11 +1,11 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Model;
+namespace Bazinga\OAuthServerBundle\Model;
 
 /**
  * This interface represents an OAuth token.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Model
  * @author William DURAND <william.durand1@gmail.com>
  */
@@ -33,12 +33,12 @@ interface OAuthTokenInterface
     public function hasExpired();
     /**
      * Returns the user for this token.
-     * @return \Bazinga\OAuthBundle\Model\OAuthUserInterface
+     * @return \Bazinga\OAuthServerBundle\Model\OAuthUserInterface
      */
     function getUser();
     /**
      * Returns the consumer for this token.
-     * @return \Bazinga\OAuthBundle\Model\OAuthConsumerInterface
+     * @return \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface
      */
     function getConsumer();
 }

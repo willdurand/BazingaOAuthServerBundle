@@ -1,6 +1,6 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Controller;
+namespace Bazinga\OAuthServerBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -8,14 +8,14 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Templating\EngineInterface;
 
-use Bazinga\OAuthBundle\Model\OAuthRequestTokenInterface;
-use Bazinga\OAuthBundle\Model\Provider\OAuthTokenProviderInterface;
+use Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface;
+use Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface;
 
 /**
  * LoginController class.
  * This controller must be secured to get a valid user.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Controller
  * @author William DURAND <william.durand1@gmail.com>
  */
@@ -34,7 +34,7 @@ class LoginController
      */
     protected $request;
     /**
-     * @var \Bazinga\OAuthBundle\Model\Provider\OAuthTokenProviderInterface
+     * @var \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface
      */
     protected $tokenProvider;
 
@@ -44,7 +44,7 @@ class LoginController
      * @param \Symfony\Component\Templating\EngineInterface $engine                                 The template engine.
      * @param \Symfony\Component\Security\Core\SecurityContextInterface $securityContext            The security context.
      * @param \Symfony\Component\HttpFoundation\Request $request                                    The request.
-     * @param \Bazinga\OAuthBundle\Model\Provider\OAuthTokenProviderInterface $tokenProvider The OAuth token provider.
+     * @param \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface $tokenProvider The OAuth token provider.
      */
     public function __construct(EngineInterface $engine, SecurityContextInterface $securityContext, Request $request, OAuthTokenProviderInterface $tokenProvider)
     {
@@ -69,7 +69,7 @@ class LoginController
             if ($token instanceof OAuthRequestTokenInterface) {
                 $this->tokenProvider->setUserForRequestToken($token, $this->securityContext->getToken()->getUser());
 
-                return new Response($this->engine->render('BazingaOAuthBundle::authorize.html.twig', array(
+                return new Response($this->engine->render('BazingaOAuthServerBundle::authorize.html.twig', array(
                     'consumer'       => $token->getConsumer(),
                     'oauth_token'    => $oauth_token,
                     'oauth_callback' => $oauth_callback

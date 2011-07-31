@@ -1,11 +1,11 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Model;
+namespace Bazinga\OAuthServerBundle\Model;
 
 /**
  * This interface represents a User.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Model
  * @author William DURAND <william.durand1@gmail.com>
  */

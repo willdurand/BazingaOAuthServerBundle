@@ -5,20 +5,20 @@
 
     <parameters>
         <!-- Controller -->
-        <parameter key="bazinga.oauth.controller.server.class">Bazinga\OAuthBundle\Controller\ServerController</parameter>
-        <parameter key="bazinga.oauth.controller.login.class">Bazinga\OAuthBundle\Controller\LoginController</parameter>
+        <parameter key="bazinga.oauth.controller.server.class">Bazinga\OAuthServerBundle\Controller\ServerController</parameter>
+        <parameter key="bazinga.oauth.controller.login.class">Bazinga\OAuthServerBundle\Controller\LoginController</parameter>
         <!-- OAuth server service -->
-        <parameter key="bazinga.oauth.server_service.class">Bazinga\OAuthBundle\Service\OAuthServerService</parameter>
-        <parameter key="bazinga.xauth.server_service.class">Bazinga\OAuthBundle\Service\XAuthServerService</parameter>
+        <parameter key="bazinga.oauth.server_service.class">Bazinga\OAuthServerBundle\Service\OAuthServerService</parameter>
+        <parameter key="bazinga.xauth.server_service.class">Bazinga\OAuthServerBundle\Service\XAuthServerService</parameter>
         <!-- Signatures -->
-        <parameter key="bazinga.oauth.signature.plaintext.class">Bazinga\OAuthBundle\Service\Signature\OAuthPlainTextSignature</parameter>
-        <parameter key="bazinga.oauth.signature.hmac_sha1.class">Bazinga\OAuthBundle\Service\Signature\OAuthHmacSha1Signature</parameter>
+        <parameter key="bazinga.oauth.signature.plaintext.class">Bazinga\OAuthServerBundle\Service\Signature\OAuthPlainTextSignature</parameter>
+        <parameter key="bazinga.oauth.signature.hmac_sha1.class">Bazinga\OAuthServerBundle\Service\Signature\OAuthHmacSha1Signature</parameter>
         <!-- Authentification -->
-        <parameter key="bazinga.oauth.security.authentication.provider.class">Bazinga\OAuthBundle\Security\Authentification\Provider\OAuthProvider</parameter>
-        <parameter key="bazinga.oauth.security.authentication.listener.class">Bazinga\OAuthBundle\Security\Firewall\OAuthListener</parameter>
+        <parameter key="bazinga.oauth.security.authentication.provider.class">Bazinga\OAuthServerBundle\Security\Authentification\Provider\OAuthProvider</parameter>
+        <parameter key="bazinga.oauth.security.authentication.listener.class">Bazinga\OAuthServerBundle\Security\Firewall\OAuthListener</parameter>
         <!-- Event listener -->
-        <parameter key="bazinga.oauth.event_listener.request.class">Bazinga\OAuthBundle\EventListener\OAuthRequestListener</parameter>
-        <parameter key="bazinga.oauth.event_listener.exception.class">Bazinga\OAuthBundle\EventListener\OAuthExceptionListener</parameter>
+        <parameter key="bazinga.oauth.event_listener.request.class">Bazinga\OAuthServerBundle\EventListener\OAuthRequestListener</parameter>
+        <parameter key="bazinga.oauth.event_listener.exception.class">Bazinga\OAuthServerBundle\EventListener\OAuthExceptionListener</parameter>
     </parameters>
 
     <services>

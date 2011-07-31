@@ -1,13 +1,13 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Security\Authentification\Token;
+namespace Bazinga\OAuthServerBundle\Security\Authentification\Token;
 
 use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
 
 /**
  * OAuthToken class.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Security
  * @author William DURAND <william.durand1@gmail.com>
  */

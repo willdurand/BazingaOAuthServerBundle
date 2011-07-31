@@ -1,6 +1,6 @@
 <?php
 
-namespace Bazinga\OAuthBundle\DependencyInjection;
+namespace Bazinga\OAuthServerBundle\DependencyInjection;
 
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
@@ -15,7 +15,7 @@ use Symfony\Component\Config\FileLocator;
  *
  * @author William DURAND <william.durand1@gmail.com>
  */
-class BazingaOAuthExtension extends Extension
+class BazingaOAuthServerExtension extends Extension
 {
     /**
      * Loads configuration.

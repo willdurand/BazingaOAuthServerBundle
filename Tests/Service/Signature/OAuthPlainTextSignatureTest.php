@@ -1,9 +1,9 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Tests\Service\Signature;
+namespace Bazinga\OAuthServerBundle\Tests\Service\Signature;
 
-use Bazinga\OAuthBundle\Tests\TestCase;
-use Bazinga\OAuthBundle\Service\Signature\OAuthPlainTextSignature;
+use Bazinga\OAuthServerBundle\Tests\TestCase;
+use Bazinga\OAuthServerBundle\Service\Signature\OAuthPlainTextSignature;
 
 /**
  * @author William DURAND <william.durand1@gmail.com>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Controller;
+namespace Bazinga\OAuthServerBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,13 +9,13 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Templating\EngineInterface;
 
-use Bazinga\OAuthBundle\Service\OAuthServerServiceInterface;
-use Bazinga\OAuthBundle\Model\OAuthRequestTokenInterface;
+use Bazinga\OAuthServerBundle\Service\OAuthServerServiceInterface;
+use Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface;
 
 /**
  * ServerController class.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Controller
  * @author William DURAND <william.durand1@gmail.com>
  */
@@ -34,7 +34,7 @@ class ServerController
      */
     protected $request;
     /**
-     * @var \Bazinga\OAuthBundle\Service\OAuthServerInterface
+     * @var \Bazinga\OAuthServerBundle\Service\OAuthServerInterface
      */
     protected $serverService;
 
@@ -43,7 +43,7 @@ class ServerController
      * @param \Symfony\Component\Routing\RouterInterface $router                                    The router.
      * @param \Symfony\Component\Templating\EngineInterface $engine                                 The template engine.
      * @param \Symfony\Component\HttpFoundation\Request $request                                    The request.
-     * @param \Bazinga\OAuthBundle\Service\OAuthServerServiceInterface $serverService        The OAuth server service.
+     * @param \Bazinga\OAuthServerBundle\Service\OAuthServerServiceInterface $serverService        The OAuth server service.
      */
     public function __construct(RouterInterface $router, EngineInterface $engine, Request $request, OAuthServerServiceInterface $serverService)
     {
@@ -104,7 +104,7 @@ class ServerController
                 $this->serverService->getTokenProvider()->deleteRequestToken($token);
 
                 // error page if the user didn't accept to share its information.
-                return new Response($this->engine->render('BazingaOAuthBundle::error.html.twig', array(
+                return new Response($this->engine->render('BazingaOAuthServerBundle::error.html.twig', array(
                     'consumer' => $token->getConsumer()
                 )));
             }

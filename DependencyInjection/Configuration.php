@@ -1,15 +1,15 @@
 <?php
 
-namespace Bazinga\OAuthBundle\DependencyInjection;
+namespace Bazinga\OAuthServerBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * BazingaOAuthBundle configuration structure.
+ * BazingaOAuthServerBundle configuration structure.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  DependencyInjection
  * @author William DURAND <william.durand1@gmail.com>
  */
@@ -23,7 +23,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('bazinga_o_auth');
+        $rootNode = $treeBuilder->root('bazinga_oauth_server');
 
         $this->addDefaultSection($rootNode);
         $this->addServiceSection($rootNode);

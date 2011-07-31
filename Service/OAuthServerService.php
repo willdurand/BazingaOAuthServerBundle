@@ -1,13 +1,13 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Service;
+namespace Bazinga\OAuthServerBundle\Service;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-use Bazinga\OAuthBundle\Model\OAuthConsumerInterface;
-use Bazinga\OAuthBundle\Model\OAuthRequestTokenInterface;
-use Bazinga\OAuthBundle\Model\OAuthAccessTokenInterface;
-use Bazinga\OAuthBundle\Model\OAuthUserInterface;
+use Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface;
+use Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface;
+use Bazinga\OAuthServerBundle\Model\OAuthAccessTokenInterface;
+use Bazinga\OAuthServerBundle\Model\OAuthUserInterface;
 
 /**
  * OAuthServerService class.
@@ -15,7 +15,7 @@ use Bazinga\OAuthBundle\Model\OAuthUserInterface;
  *
  * This is the concrete Symfony2 implementation of an OAuth server service.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Service
  * @author William DURAND <william.durand1@gmail.com>
  */

@@ -1,18 +1,18 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Model\Provider;
+namespace Bazinga\OAuthServerBundle\Model\Provider;
 
 /**
  * This interface represents an OAuth Consumer provider.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Provider
  * @author William DURAND <william.durand1@gmail.com>
  */
 interface OAuthConsumerProviderInterface
 {
     /**
-     * @return Bazinga\OAuthBundle\Model\OAuthConsumerInterface
+     * @return Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface
      */
     public function getConsumerByKey($consumerKey);
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Tests;
+namespace Bazinga\OAuthServerBundle\Tests;
 
 /**
  * TestCase
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Tests
  * @author William DURAND <william.durand1@gmail.com>
  */

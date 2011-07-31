@@ -1,6 +1,6 @@
 <?php
 
-namespace Bazinga\OAuthBundle\DependencyInjection\Security\Factory;
+namespace Bazinga\OAuthServerBundle\DependencyInjection\Security\Factory;
 
 use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\SecurityFactoryInterface;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Reference;
 /**
  * OAuthFactory class.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  DependencyInjection
  * @author William DURAND <william.durand1@gmail.com>
  */

@@ -1,16 +1,16 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Model\Provider;
+namespace Bazinga\OAuthServerBundle\Model\Provider;
 
-use Bazinga\OAuthBundle\Model\OAuthAccessTokenInterface;
-use Bazinga\OAuthBundle\Model\OAuthConsumerInterface;
-use Bazinga\OAuthBundle\Model\OAuthRequestTokenInterface;
-use Bazinga\OAuthBundle\Model\OAuthUserInterface;
+use Bazinga\OAuthServerBundle\Model\OAuthAccessTokenInterface;
+use Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface;
+use Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface;
+use Bazinga\OAuthServerBundle\Model\OAuthUserInterface;
 
 /**
  * OAuthTokenProviderInterface interface.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Provider
  * @author William DURAND <william.durand1@gmail.com>
  */
@@ -19,16 +19,16 @@ interface OAuthTokenProviderInterface
     /**
      * Create a request token.
      *
-     * @param \Bazinga\OAuthBundle\Model\OAuthConsumerInterface $consumer An OAuth consumer.
-     * @return \Bazinga\OAuthBundle\Model\OAuthRequestTokenInterface
+     * @param \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface $consumer An OAuth consumer.
+     * @return \Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface
      */
     function createRequestToken(OAuthConsumerInterface $consumer);
     /**
      * Create an access token.
      *
-     * @param \Bazinga\OAuthBundle\Model\OAuthConsumerInterface $consumer An OAuth consumer.
+     * @param \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface $consumer An OAuth consumer.
      * @param
-     * @return \Bazinga\OAuthBundle\Model\OAuthAccessTokenInterface
+     * @return \Bazinga\OAuthServerBundle\Model\OAuthAccessTokenInterface
      */
     function createAccessToken(OAuthConsumerInterface $consumer, OAuthUserInterface $user);
     /**

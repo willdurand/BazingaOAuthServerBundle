@@ -1,13 +1,13 @@
 <?php
 
-namespace Bazinga\OAuthBundle\EventListener;
+namespace Bazinga\OAuthServerBundle\EventListener;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  EventListener
  * @author William DURAND <william.durand1@gmail.com>
  */

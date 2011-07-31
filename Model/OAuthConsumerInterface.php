@@ -1,11 +1,11 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Model;
+namespace Bazinga\OAuthServerBundle\Model;
 
 /**
  * This interface represents an OAuth Consumer.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Model
  * @author William DURAND <william.durand1@gmail.com>
  */

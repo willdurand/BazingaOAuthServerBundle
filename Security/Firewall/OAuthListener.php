@@ -1,6 +1,6 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Security\Firewall;
+namespace Bazinga\OAuthServerBundle\Security\Firewall;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -9,12 +9,12 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Firewall\ListenerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
-use Bazinga\OAuthBundle\Security\Authentification\Token\OAuthToken;
+use Bazinga\OAuthServerBundle\Security\Authentification\Token\OAuthToken;
 
 /**
  * OAuthListener class.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Security
  * @author William DURAND <william.durand1@gmail.com>
  */

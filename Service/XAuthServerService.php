@@ -1,16 +1,16 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Service;
+namespace Bazinga\OAuthServerBundle\Service;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-use Bazinga\OAuthBundle\Service\OAuthServerService;
-use Bazinga\OAuthBundle\Model\OAuthUserInterface;
+use Bazinga\OAuthServerBundle\Service\OAuthServerService;
+use Bazinga\OAuthServerBundle\Model\OAuthUserInterface;
 
 /**
  * xAuth implementation.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Service
  * @author William DURAND <william.durand1@gmail.com>
  */

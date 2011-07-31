@@ -13,7 +13,7 @@
     <!-- <server name="SYMFONY" value="/path/to/symfony" /> -->
   </php>
   <testsuites>
-    <testsuite name="BazingaOAuthBundle Test Suite">
+    <testsuite name="BazingaOAuthServerBundle Test Suite">
       <directory suffix="Test.php">./Tests</directory>
     </testsuite>
   </testsuites>

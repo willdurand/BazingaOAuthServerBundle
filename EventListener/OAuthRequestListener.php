@@ -1,6 +1,6 @@
 <?php
 
-namespace Bazinga\OAuthBundle\EventListener;
+namespace Bazinga\OAuthServerBundle\EventListener;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
  * Called early, this listener will add some oauth attributes to the Request if
  * the current Request is an OAuth request (by checking parameters).
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  EventListener
  * @author William DURAND <william.durand1@gmail.com>
  */

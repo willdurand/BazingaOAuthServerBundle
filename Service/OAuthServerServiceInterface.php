@@ -1,12 +1,12 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Service;
+namespace Bazinga\OAuthServerBundle\Service;
 
 /**
  * OAuthServerServiceInterface interface.
  * Describes how an OAuth server works.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Service
  * @author William DURAND <william.durand1@gmail.com>
  */
@@ -15,13 +15,13 @@ interface OAuthServerServiceInterface
     /**
      * Returns the token provider in use.
      *
-     * @return \Bazinga\OAuthBundle\Model\Provider\OAuthTokenProviderInterface
+     * @return \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface
      */
     function getTokenProvider();
     /**
      * Returns the consumer provider in use.
      *
-     * @return \Bazinga\OAuthBundle\Model\Provider\OAuthConsumerProviderInterface
+     * @return \Bazinga\OAuthServerBundle\Model\Provider\OAuthConsumerProviderInterface
      */
     function getConsumerProvider();
     /**

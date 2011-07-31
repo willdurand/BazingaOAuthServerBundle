@@ -6,8 +6,8 @@
     WTF ?!! Why did I release that ? Just to prove there is not only a README and it's more convenient for me to work with Github.
 
 
-BazingaOAuthBundle
-==================
+BazingaOAuthServerBundle
+========================
 
 This bundle provides all you need to manage OAuth in a server side way.
 
@@ -20,7 +20,7 @@ the `Model/` folder and the logic behind.**
 ## Installation
 As usual, add this bundle to your submodules:
 
-    git submodule add git://github.com/Bazinga/BazingaOAuthBundle.git vendor/bundles/Bazinga/OAuthBundle
+    git submodule add git://github.com/Bazinga/BazingaOAuthServerBundle.git vendor/bundles/Bazinga/OAuthServerBundle
 
 Register the namespace in `app/autoload.php`:
 
@@ -43,7 +43,7 @@ public function registerBundles()
 {
     return array(
         // ...
-        new Bazinga\OAuthBundle\BazingaOAuthBundle(),
+        new Bazinga\OAuthServerBundle\BazingaOAuthServerBundle(),
     );
 }
 ```
@@ -53,7 +53,7 @@ Import the `security.yml` configuration file in `app/config/config.yml`:
 ``` yaml
 # app/config/config.yml
 imports:
-    - { resource: "@BazingaOAuthBundle/Resources/config/security.yml" }
+    - { resource: "@BazingaOAuthServerBundle/Resources/config/security.yml" }
 ```
 
 Import the `routing.yml` configuration file in `app/config/routing.yml`:
@@ -61,7 +61,7 @@ Import the `routing.yml` configuration file in `app/config/routing.yml`:
 ``` yaml
 # app/config/routing.yml
 bazinga_oauth:
-    resource: "@BazingaOAuthBundle/Resources/config/routing/routing.yml"
+    resource: "@BazingaOAuthServerBundle/Resources/config/routing/routing.yml"
 ```
 
 That's all for the installation :-)

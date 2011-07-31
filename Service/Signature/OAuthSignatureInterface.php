@@ -1,11 +1,11 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Service\Signature;
+namespace Bazinga\OAuthServerBundle\Service\Signature;
 
 /**
  * OAuthSignatureInterface interface.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Signature
  * @author William DURAND <william.durand1@gmail.com>
  */

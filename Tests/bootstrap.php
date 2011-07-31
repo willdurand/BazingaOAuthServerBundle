@@ -1,3 +1,3 @@
 <?php
 
-require __DIR__.'/../../OAuthTest/app/bootstrap.php.cache';
+require __DIR__.'/../../sfLiveTest/app/autoload.php';

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bazinga\OAuthBundle\DependencyInjection\Compiler;
+namespace Bazinga\OAuthServerBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Reference;
 /**
  * AddSignaturesPass class.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  DependencyInjection
  * @author William DURAND <william.durand1@gmail.com>
  */

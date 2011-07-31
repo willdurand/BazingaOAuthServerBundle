@@ -1,12 +1,12 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Service;
+namespace Bazinga\OAuthServerBundle\Service;
 
-use Bazinga\OAuthBundle\Model\OAuthConsumerInterface;
-use Bazinga\OAuthBundle\Model\OAuthTokenInterface;
-use Bazinga\OAuthBundle\Model\Provider\OAuthConsumerProviderInterface;
-use Bazinga\OAuthBundle\Model\Provider\OAuthTokenProviderInterface;
-use Bazinga\OAuthBundle\Service\Signature\OAuthSignatureInterface;
+use Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface;
+use Bazinga\OAuthServerBundle\Model\OAuthTokenInterface;
+use Bazinga\OAuthServerBundle\Model\Provider\OAuthConsumerProviderInterface;
+use Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface;
+use Bazinga\OAuthServerBundle\Service\Signature\OAuthSignatureInterface;
 
 /**
  * OAuthAbstractServerService class.
@@ -15,7 +15,7 @@ use Bazinga\OAuthBundle\Service\Signature\OAuthSignatureInterface;
  * If you want to create your own OAuthServerService implementation,
  * this class provides some useful tools.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Service
  * @author William DURAND <william.durand1@gmail.com>
  */
@@ -99,11 +99,11 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
     const ERROR_PERMISSION_DENIED                   = 'permission_denied';
 
     /**
-     * @var \Bazinga\OAuthBundle\Model\Provider\OAuthConsumerProviderInterface
+     * @var \Bazinga\OAuthServerBundle\Model\Provider\OAuthConsumerProviderInterface
      */
     protected $consumerProvider;
     /**
-     * @var \Bazinga\OAuthBundle\Model\Provider\OAuthTokenProviderInterface
+     * @var \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface
      */
     protected $tokenProvider;
     /**
@@ -168,7 +168,7 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
 
     /**
      * {@inheritdoc}
-     * @return \Bazinga\OAuthBundle\Model\Provider\OAuthTokenProviderInterface
+     * @return \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface
      */
     public function getTokenProvider()
     {
@@ -177,7 +177,7 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
 
     /**
      * {@inheritdoc}
-     * @return \Bazinga\OAuthBundle\Model\Provider\OAuthConsumerProviderInterface
+     * @return \Bazinga\OAuthServerBundle\Model\Provider\OAuthConsumerProviderInterface
      */
     public function getConsumerProvider()
     {

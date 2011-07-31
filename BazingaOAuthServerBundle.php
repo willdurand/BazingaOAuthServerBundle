@@ -1,19 +1,19 @@
 <?php
 
-namespace Bazinga\OAuthBundle;
+namespace Bazinga\OAuthServerBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-use Bazinga\OAuthBundle\DependencyInjection\Compiler\AddSignaturesPass;
+use Bazinga\OAuthServerBundle\DependencyInjection\Compiler\AddSignaturesPass;
 
 /**
- * BazingaOAuthBundle class.
+ * BazingaOAuthServerBundle class.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @author William DURAND <william.durand1@gmail.com>
  */
-class BazingaOAuthBundle extends Bundle
+class BazingaOAuthServerBundle extends Bundle
 {
     /**
      * {@inheritdoc}

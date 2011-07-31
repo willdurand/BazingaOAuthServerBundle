@@ -1,11 +1,11 @@
 <?php
 
-namespace Bazinga\OAuthBundle\Service\Signature;
+namespace Bazinga\OAuthServerBundle\Service\Signature;
 
 /**
  * RSA-SHA1 signature.
  *
- * @package     BazingaOAuthBundle
+ * @package     BazingaOAuthServerBundle
  * @subpackage  Signature
  * @author William DURAND <william.durand1@gmail.com>
  */
