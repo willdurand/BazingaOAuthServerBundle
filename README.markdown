@@ -22,7 +22,7 @@ the `Model/` folder and the logic behind.**
 ## Installation
 As usual, add this bundle to your submodules:
 
-    git submodule add git://github.com/Bazinga/BazingaOAuthServerBundle.git vendor/bundles/Bazinga/OAuthServerBundle
+    git submodule add git://github.com/willdurand/BazingaOAuthServerBundle.git vendor/bundles/Bazinga/OAuthServerBundle
 
 Register the namespace in `app/autoload.php`:
 
@@ -143,7 +143,76 @@ It's your job to write this part. You will have to declare two new routes:
 * `/oauth/login_check`
 * `/oauth/login`
 
-And to create the logic behind these routes is also your job !
+And to create the logic behind these routes is also your job ! For instance:
+
+``` php
+<?php
+// src/Acme/DemoBundle/Controller/LoginController.php
+
+namespace Acme\DemoBundle\Controller;
+
+class LoginController
+{
+    // ...
+
+    public function loginAction()
+    {
+        $request = $this->getRequest();
+        $session = $request->getSession();
+
+        // get the login error if there is one
+        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+            $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
+        } else {
+            $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
+        }
+
+        return $this->engine->renderResponse('DemoBundle:Login:login.html.twig', array(
+            // last username entered by the user
+            'last_username' => $session->get(SecurityContext::LAST_USERNAME),
+            'error'         => $error,
+        ));
+    }
+
+    public function loginCheckAction()
+    {
+    }
+}
+```
+
+Routing definition:
+
+``` yaml
+# src/Acme/DemoBundle/Resources/config/routing.yml
+acme_demo_login_login:
+    pattern:    /oauth/login
+    defaults:   { _controller: acme.demo.controller.login:loginAction }
+
+acme_demo_login_login_check:
+    pattern:    /oauth/login_check
+    defaults:   { _controller: acme.demo.controller.login:loginCheckAction }
+```
+
+View:
+
+``` django+jinja
+{# src/Acme/DemoBundle/Resources/config/Login/login.html.twig #}
+
+{% if error %}
+    <div>{{ error }}</div>
+{% endif %}
+
+<form action="{{ path('acme_demo_login_login_check') }}" method="post">
+    <label for="username">{{ 'security.login.username'|trans({}, 'AcmeDemoBundle') }}</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+
+    <label for="password">{{ 'security.login.password'|trans({}, 'AcmeDemoBundle') }}</label>
+    <input type="password" id="password" name="_password" />
+
+    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'AcmeDemoBundle') }}" />
+</form>
+```
+
 Most of the time, OAuth clients use modal boxes to present the OAuth forms.
 So keep in mind this point when you will create your templates.
 
