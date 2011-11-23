@@ -9,6 +9,8 @@
 BazingaOAuthServerBundle
 ========================
 
+[![Build Status](https://secure.travis-ci.org/willdurand/BazingaOAuthServerBundle.png)](http://travis-ci.org/willdurand/BazingaOAuthServerBundle)
+
 This bundle provides all you need to manage OAuth in a server side way.
 
 This bundle implements the **OAuth v1.0** protocol based on the **RFC 5849**.
