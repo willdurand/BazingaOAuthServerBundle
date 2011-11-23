@@ -14,5 +14,5 @@ interface OAuthConsumerProviderInterface
     /**
      * @return Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface
      */
-    public function getConsumerByKey($consumerKey);
+    function getConsumerByKey($consumerKey);
 }

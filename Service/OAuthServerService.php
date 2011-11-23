@@ -131,6 +131,7 @@ class OAuthServerService extends OAuthAbstractServerService
      * @param string $requestMethod                     The request method.
      * @param string $requestUrl                        The request url.
      * @param OAuthRequestTokenInterface $requestToken  A request token.
+     *
      * @return string
      */
     protected function createAccessToken(OAuthConsumerInterface $consumer, OAuthUserInterface $user, $requestParameters,
@@ -208,7 +209,6 @@ class OAuthServerService extends OAuthAbstractServerService
 
     /**
      * {@inheritdoc}
-     * Implements the interface.
      */
     public function accessToken($requestParameters, $requestMethod, $requestUrl)
     {
@@ -222,7 +222,6 @@ class OAuthServerService extends OAuthAbstractServerService
 
     /**
      * {@inheritdoc}
-     * Implements the interface.
      */
     public function validateRequest($requestParameters, $requestMethod, $requestUrl)
     {
@@ -230,6 +229,12 @@ class OAuthServerService extends OAuthAbstractServerService
 
         $consumer = $this->getConsumerByKey($requestParameters['oauth_consumer_key']);
         $token    = $this->tokenProvider->loadAccessTokenByToken($requestParameters['oauth_token']);
+
+        if (false === $this->nonceProvider->checkNonceAndTimestampUnicity($requestParameters['oauth_nonce'], $requestParameters['oauth_timestamp'], $consumer)) {
+            throw new HttpException(400, self::ERROR_NONCE_USED);
+        } else {
+            $this->nonceProvider->registerNonceAndTimestamp($requestParameters['oauth_nonce'], $requestParameters['oauth_timestamp'], $consumer);
+        }
 
         if (! $token instanceof OAuthAccessTokenInterface) {
             throw new HttpException(401, self::ERROR_TOKEN_REJECTED);

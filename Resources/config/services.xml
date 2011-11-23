@@ -40,11 +40,13 @@
         <service id="bazinga.oauth.server_service" class="%bazinga.oauth.server_service.class%">
             <argument></argument> <!-- consumer provider -->
             <argument></argument> <!-- token provider -->
+            <argument></argument> <!-- nonce provider -->
             <argument type="service" id="logger" />
         </service>
         <service id="bazinga.xauth.server_service" class="%bazinga.xauth.server_service.class%">
             <argument></argument> <!-- consumer provider -->
             <argument></argument> <!-- token provider -->
+            <argument></argument> <!-- nonce provider -->
             <argument type="service" id="logger" />
         </service>
         <!-- Signatures -->

@@ -5,6 +5,7 @@ namespace Bazinga\OAuthServerBundle\Service;
 use Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface;
 use Bazinga\OAuthServerBundle\Model\OAuthTokenInterface;
 use Bazinga\OAuthServerBundle\Model\Provider\OAuthConsumerProviderInterface;
+use Bazinga\OAuthServerBundle\Model\Provider\OAuthNonceProviderInterface;
 use Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface;
 use Bazinga\OAuthServerBundle\Service\Signature\OAuthSignatureInterface;
 
@@ -102,25 +103,35 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
      * @var \Bazinga\OAuthServerBundle\Model\Provider\OAuthConsumerProviderInterface
      */
     protected $consumerProvider;
+
     /**
      * @var \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface
      */
     protected $tokenProvider;
+
+    /**
+     * @var \Bazinga\OAuthServerBundle\Model\Provider\OAuthNonceProviderInterface
+     */
+    protected $nonceProvider;
+
     /**
      * An array of signature services that implement OAuthSignatureInterface.
      * @var array
      */
     protected $signatureServices;
+
     /**
      * An array of required parameters names for the request token process.
      * @var array
      */
     protected $requiredParamsForRequestToken;
+
     /**
      * An array of required parameters names for the access token process.
      * @var array
      */
     protected $requiredParamsForAccessToken;
+
     /**
      * An array of required parameters names for the access resource process.
      * @var array
@@ -133,10 +144,11 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
      * @param OAuthConsumerProviderInterface $consumerProvider The consumer provider.
      * @param OAuthTokenProviderInterface $tokenProvider       The consumer provider.
      */
-    public function __construct(OAuthConsumerProviderInterface $consumerProvider, OAuthTokenProviderInterface $tokenProvider)
+    public function __construct(OAuthConsumerProviderInterface $consumerProvider, OAuthTokenProviderInterface $tokenProvider, OAuthNonceProviderInterface $nonceProvider)
     {
         $this->consumerProvider  = $consumerProvider;
         $this->tokenProvider     = $tokenProvider;
+        $this->nonceProvider     = $nonceProvider;
 
         $this->signatureServices = array();
 

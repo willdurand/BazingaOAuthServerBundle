@@ -64,10 +64,11 @@ That's all for the installation :-)
 ## Configuration
 In order to use this bundle, you have to configure it.
 
-First, you have to implement two services:
+First, you have to implement three services:
 
-* a **consumer provider** service by implementing the `OAuthConsumerProviderInterface` interface.
-* a **token provider** service by implementing the `OAuthTokenProviderInterface` interface.
+* a **consumer provider** service by implementing the `OAuthConsumerProviderInterface` interface;
+* a **token provider** service by implementing the `OAuthTokenProviderInterface` interface;
+* a **nonce provider** service by implementing the `OAuthNonceProviderInterface` interface.
 
 These services have to be registered in the Dependency Injection container.
 
@@ -83,6 +84,10 @@ services:
         class: Acme\DemoBundle\Model\Provider\MyTokenProvider
         arguments:
             -  @doctrine.orm.entity_manager
+    acme.my_nonce_provider:
+        class: Acme\DemoBundle\Model\Provider\MyNonceProvider
+        arguments:
+            -  @doctrine.orm.entity_manager
 ```
 
 Once done, add the following lines to your configuration file `app/config/config.yml`:
@@ -94,6 +99,7 @@ bazinga_o_auth:
     service:
         consumer_provider: acme.my_consumer_provider
         token_provider:    acme.my_token_provider
+        nonce_provider:    acme.my_nonce_provider
 ```
 
 Now, you need to configure the **security** component:

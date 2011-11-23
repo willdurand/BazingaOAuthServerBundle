@@ -41,13 +41,18 @@ class BazingaOAuthServerExtension extends Extension
                 ->replaceArgument(1, new Reference('bazinga.xauth.server_service'));
         }
 
-        if (isset($config['service']) && isset($config['service']['consumer_provider']) && isset($config['service']['token_provider'])) {
+        if (isset($config['service']) &&
+            isset($config['service']['consumer_provider']) &&
+            isset($config['service']['token_provider']) &&
+            isset($config['service']['nonce_provider'])
+        ) {
             $serverServiceId = (true === $enableXAuth) ? 'bazinga.xauth.server_service' : 'bazinga.oauth.server_service';
 
             $container
                 ->getDefinition($serverServiceId)
                 ->replaceArgument(0, new Reference($config['service']['consumer_provider']))
-                ->replaceArgument(1, new Reference($config['service']['token_provider']));
+                ->replaceArgument(1, new Reference($config['service']['token_provider']))
+                ->replaceArgument(2, new Reference($config['service']['nonce_provider']));
 
             $container->getDefinition('bazinga.oauth.controller.server')
                 ->replaceArgument(4, new Reference($config['service']['token_provider']));
