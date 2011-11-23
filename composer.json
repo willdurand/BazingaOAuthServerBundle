@@ -1,0 +1,20 @@
+{
+  "name": "willdurand/oauth-server-bundle",
+  "description": "", server side implementation of the OAuth 1.0 protocol based on RFC 5849
+  "keywords": ["api", "server", "oauth"],
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "William Durand",
+      "email": "william.durand1@gmail.com"
+    }
+  ],
+  "require": {
+    "symfony/framework-bundle": "2.*"
+  },
+  "autoload": {
+    "psr-0": { "Bazinga\\OAuthServerBundle": "" }
+  },
+  "target-dir": "Bazinga/OAuthServerBundle"
+}
