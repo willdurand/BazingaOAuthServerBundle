@@ -74,7 +74,7 @@ Once done, add the following lines to your configuration file `app/config/config
 
 ``` yaml
 # app/config/config.yml
-bazinga_o_auth:
+bazinga_o_auth_server:
     enable_xauth:   false
     service:
         consumer_provider: acme.my_consumer_provider
