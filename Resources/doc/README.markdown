@@ -12,21 +12,9 @@ the `Model/` folder and the logic behind.**
 
 
 ## Installation
-As usual, add this bundle to your submodules:
+As usual, add this bundle with composer:
 
-    git submodule add git://github.com/willdurand/BazingaOAuthServerBundle.git vendor/bundles/Bazinga/OAuthServerBundle
-
-Register the namespace in `app/autoload.php`:
-
-``` php
-<?php
-// app/autoload.php
-
-$loader->registerNamespaces(array(
-    // ...
-    'Bazinga'   => __DIR__.'/../vendor/bundles',
-));
-```
+    composer require willdurand/oauth-server-bundle
 
 Register the bundle in `app/AppKernel.php`:
 
@@ -40,14 +28,6 @@ public function registerBundles()
         new Bazinga\OAuthServerBundle\BazingaOAuthServerBundle(),
     );
 }
-```
-
-Import the `security.yml` configuration file in `app/config/config.yml`:
-
-``` yaml
-# app/config/config.yml
-imports:
-    - { resource: "@BazingaOAuthServerBundle/Resources/config/security.yml" }
 ```
 
 Import the `routing.yml` configuration file in `app/config/routing.yml`:
