@@ -1,6 +1,6 @@
 {
   "name": "willdurand/oauth-server-bundle",
-  "description": "", server side implementation of the OAuth 1.0 protocol based on RFC 5849
+  "description": "server side implementation of the OAuth 1.0 protocol based on RFC 5849",
   "keywords": ["api", "server", "oauth"],
   "type": "symfony-bundle",
   "license": "MIT",
