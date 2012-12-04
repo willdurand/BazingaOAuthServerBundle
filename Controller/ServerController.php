@@ -40,10 +40,10 @@ class ServerController
 
     /**
      * Default constructor.
-     * @param \Symfony\Component\Routing\RouterInterface $router                                    The router.
-     * @param \Symfony\Component\Templating\EngineInterface $engine                                 The template engine.
-     * @param \Symfony\Component\HttpFoundation\Request $request                                    The request.
-     * @param \Bazinga\OAuthServerBundle\Service\OAuthServerServiceInterface $serverService        The OAuth server service.
+     * @param \Symfony\Component\Routing\RouterInterface                     $router        The router.
+     * @param \Symfony\Component\Templating\EngineInterface                  $engine        The template engine.
+     * @param \Symfony\Component\HttpFoundation\Request                      $request       The request.
+     * @param \Bazinga\OAuthServerBundle\Service\OAuthServerServiceInterface $serverService The OAuth server service.
      */
     public function __construct(RouterInterface $router, EngineInterface $engine, Request $request, OAuthServerServiceInterface $serverService)
     {
@@ -131,7 +131,7 @@ class ServerController
     /**
      * Configure a OAuth compliant Response object.
      *
-     * @param string $content    A content to send.
+     * @param  string   $content A content to send.
      * @return Response
      */
     protected function sendResponse($content)

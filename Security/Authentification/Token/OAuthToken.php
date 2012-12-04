@@ -27,7 +27,7 @@ class OAuthToken extends AbstractToken
     protected $requestUrl;
 
     /**
-     * @param array $parameters  An array of request parameters.
+     * @param array $parameters An array of request parameters.
      */
     public function setRequestParameters($parameters)
     {
@@ -35,7 +35,7 @@ class OAuthToken extends AbstractToken
     }
 
     /**
-     * @return array    An array of request parameters.
+     * @return array An array of request parameters.
      */
     public function getRequestParameters()
     {
@@ -43,7 +43,7 @@ class OAuthToken extends AbstractToken
     }
 
     /**
-     * @param string $requestMethod  A request method.
+     * @param string $requestMethod A request method.
      */
     public function setRequestMethod($requestMethod)
     {
@@ -67,7 +67,7 @@ class OAuthToken extends AbstractToken
     }
 
     /**
-     * @return string   The request URL.
+     * @return string The request URL.
      */
     public function getRequestUrl()
     {

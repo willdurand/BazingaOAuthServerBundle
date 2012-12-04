@@ -19,48 +19,48 @@ interface OAuthTokenProviderInterface
     /**
      * Create a request token.
      *
-     * @param \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface $consumer An OAuth consumer.
+     * @param  \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface     $consumer An OAuth consumer.
      * @return \Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface
      */
-    function createRequestToken(OAuthConsumerInterface $consumer);
+    public function createRequestToken(OAuthConsumerInterface $consumer);
 
     /**
      * Create an access token.
      *
-     * @param \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface $consumer An OAuth consumer.
-     * @param \Bazinga\OAuthServerBundle\Model\OAuthUserInterface $user
+     * @param  \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface    $consumer An OAuth consumer.
+     * @param  \Bazinga\OAuthServerBundle\Model\OAuthUserInterface        $user
      * @return \Bazinga\OAuthServerBundle\Model\OAuthAccessTokenInterface
      */
-    function createAccessToken(OAuthConsumerInterface $consumer, OAuthUserInterface $user);
+    public function createAccessToken(OAuthConsumerInterface $consumer, OAuthUserInterface $user);
 
     /**
      * @param $oauth_token
      * @return mixed
      */
-    function loadRequestTokenByToken($oauth_token);
+    public function loadRequestTokenByToken($oauth_token);
 
     /**
      * @param $oauth_token
      * @return mixed
      */
-    function loadAccessTokenByToken($oauth_token);
+    public function loadAccessTokenByToken($oauth_token);
 
     /**
-     * @param \Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface $token
-     * @param \Bazinga\OAuthServerBundle\Model\OAuthUserInterface $user
+     * @param  \Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface $token
+     * @param  \Bazinga\OAuthServerBundle\Model\OAuthUserInterface         $user
      * @return mixed
      */
-    function setUserForRequestToken(OAuthRequestTokenInterface $token, OAuthUserInterface $user);
+    public function setUserForRequestToken(OAuthRequestTokenInterface $token, OAuthUserInterface $user);
 
     /**
-     * @param \Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface $requestToken
+     * @param  \Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface $requestToken
      * @return mixed
      */
-    function deleteRequestToken(OAuthRequestTokenInterface $requestToken);
+    public function deleteRequestToken(OAuthRequestTokenInterface $requestToken);
 
     /**
-     * @param \Bazinga\OAuthServerBundle\Model\OAuthAccessTokenInterface $accessToken
+     * @param  \Bazinga\OAuthServerBundle\Model\OAuthAccessTokenInterface $accessToken
      * @return mixed
      */
-    function deleteAccessToken(OAuthAccessTokenInterface $accessToken);
+    public function deleteAccessToken(OAuthAccessTokenInterface $accessToken);
 }

@@ -17,5 +17,5 @@ interface OAuthRequestTokenInterface extends OAuthTokenInterface
      * Returns the verifier string.
      * @return string
      */
-    function getVerifier();
+    public function getVerifier();
 }

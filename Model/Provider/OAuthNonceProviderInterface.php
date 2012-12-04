@@ -16,16 +16,16 @@ interface OAuthNonceProviderInterface
     /**
      * @param $nonce
      * @param $timestamp
-     * @param \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface $consumer
+     * @param  \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface $consumer
      * @return boolean
      */
-    function checkNonceAndTimestampUnicity($nonce, $timestamp, OAuthConsumerInterface $consumer);
+    public function checkNonceAndTimestampUnicity($nonce, $timestamp, OAuthConsumerInterface $consumer);
 
     /**
      * @param $nonce
      * @param $timestamp
-     * @param \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface $consumer
+     * @param  \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface $consumer
      * @return boolean
      */
-    function registerNonceAndTimestamp($nonce, $timestamp, OAuthConsumerInterface $consumer);
+    public function registerNonceAndTimestamp($nonce, $timestamp, OAuthConsumerInterface $consumer);
 }

@@ -10,36 +10,36 @@ use Bazinga\OAuthServerBundle\Service\Signature\OAuthHmacSha1Signature;
  */
 class OAuthHmacSha1SignatureTest extends TestCase
 {
-	private $method;
+    private $method;
 
     public function setUp()
     {
-		$this->method = new OAuthHmacSha1Signature();
-	}
+        $this->method = new OAuthHmacSha1Signature();
+    }
 
     public function testGetName()
     {
-		$this->assertEquals('HMAC-SHA1', $this->method->getName());
-	}
+        $this->assertEquals('HMAC-SHA1', $this->method->getName());
+    }
 
     public function testSign()
     {
-		// Tests taken from http://wiki.oauth.net/TestCases section 9.2 ("HMAC-SHA1")
-		$baseString     = 'bs';
-		$consumerSecret = 'cs';
+        // Tests taken from http://wiki.oauth.net/TestCases section 9.2 ("HMAC-SHA1")
+        $baseString     = 'bs';
+        $consumerSecret = 'cs';
 
-		$tokenSecret    = NULL;
+        $tokenSecret    = NULL;
         $this->assertEquals(
             'egQqG5AJep5sJ7anhXju1unge2I%3D',
             $this->method->sign($baseString, $consumerSecret, $tokenSecret),
             'token secret is null'
         );
 
-		$tokenSecret    = 'ts';
+        $tokenSecret    = 'ts';
         $this->assertEquals(
             'VZVjXceV7JgPq%2FdOTnNmEfO0Fv8%3D',
             $this->method->sign($baseString, $consumerSecret, $tokenSecret),
             'token secret is not null'
         );
-	}
+    }
 }

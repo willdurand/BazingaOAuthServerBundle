@@ -5,7 +5,6 @@ namespace Bazinga\OAuthServerBundle\Service;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 use Bazinga\OAuthServerBundle\Service\OAuthServerService;
-use Bazinga\OAuthServerBundle\Model\OAuthUserInterface;
 
 /**
  * xAuth implementation.

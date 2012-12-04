@@ -2,7 +2,6 @@
 
 namespace Bazinga\OAuthServerBundle\Security\Authentification\Provider;
 
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -35,7 +34,7 @@ class OAuthProvider implements AuthenticationProviderInterface
     protected $tokenProvider;
 
     /**
-     * @param \Symfony\Component\Security\Core\User\UserProviderInterface $userProvider      The user provider.
+     * @param \Symfony\Component\Security\Core\User\UserProviderInterface    $userProvider  The user provider.
      * @param \Bazinga\OAuthServerBundle\Service\OAuthServerServiceInterface $serverService The OAuth server service.
      */
     public function __construct(UserProviderInterface $userProvider, OAuthServerServiceInterface $serverService)
@@ -61,6 +60,7 @@ class OAuthProvider implements AuthenticationProviderInterface
 
             if (null !== $user) {
                 $token->setUser($user);
+
                 return $token;
             }
         }

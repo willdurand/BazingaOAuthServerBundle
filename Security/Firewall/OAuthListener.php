@@ -30,7 +30,7 @@ class OAuthListener implements ListenerInterface
     protected $authenticationManager;
 
     /**
-     * @param \Symfony\Component\Security\Core\SecurityContextInterface $securityContext    The security context.
+     * @param \Symfony\Component\Security\Core\SecurityContextInterface                      $securityContext       The security context.
      * @param \Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface $authenticationManager The authentification manager.
      */
     public function __construct(SecurityContextInterface $securityContext, AuthenticationManagerInterface $authenticationManager)
@@ -40,7 +40,7 @@ class OAuthListener implements ListenerInterface
     }
 
     /**
-     * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event   The event.
+     * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event The event.
      */
     public function handle(GetResponseEvent $event)
     {
@@ -61,7 +61,7 @@ class OAuthListener implements ListenerInterface
 
             if ($returnValue instanceof TokenInterface) {
                 return $this->securityContext->setToken($returnValue);
-            } else if ($returnValue instanceof Response) {
+            } elseif ($returnValue instanceof Response) {
                 return $event->setResponse($response);
             }
         } catch (AuthenticationException $e) {

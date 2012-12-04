@@ -42,7 +42,7 @@ class OAuthRequestListener
     /**
      * Merge all acceptable parameters.
      *
-     * @param Request $request  The request.
+     * @param  Request $request The request.
      * @return array
      */
     protected function filterRequestParameters(Request $request)
@@ -53,7 +53,7 @@ class OAuthRequestListener
     /**
      * Parse the Authorization header if available.
      *
-     * @param Request $request  The request.
+     * @param  Request $request The request.
      * @return array
      */
     protected function parseAuthorizationHeader(Request $request)
@@ -94,7 +94,7 @@ class OAuthRequestListener
      * Build a valid Request URL based on the Request.
      * @see http://oauth.net/core/1.0/#sig_url
      *
-     * @param Request $request  The request.
+     * @param  Request $request The request.
      * @return string
      */
     protected function buildRequestUrl(Request $request)

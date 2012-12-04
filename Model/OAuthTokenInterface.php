@@ -35,10 +35,10 @@ interface OAuthTokenInterface
      * Returns the user for this token.
      * @return \Bazinga\OAuthServerBundle\Model\OAuthUserInterface
      */
-    function getUser();
+    public function getUser();
     /**
      * Returns the consumer for this token.
      * @return \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface
      */
-    function getConsumer();
+    public function getConsumer();
 }

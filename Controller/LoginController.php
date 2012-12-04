@@ -41,10 +41,10 @@ class LoginController
     /**
      * Default constructor.
      *
-     * @param \Symfony\Component\Templating\EngineInterface $engine                                 The template engine.
-     * @param \Symfony\Component\Security\Core\SecurityContextInterface $securityContext            The security context.
-     * @param \Symfony\Component\HttpFoundation\Request $request                                    The request.
-     * @param \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface $tokenProvider The OAuth token provider.
+     * @param \Symfony\Component\Templating\EngineInterface                         $engine          The template engine.
+     * @param \Symfony\Component\Security\Core\SecurityContextInterface             $securityContext The security context.
+     * @param \Symfony\Component\HttpFoundation\Request                             $request         The request.
+     * @param \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface $tokenProvider   The OAuth token provider.
      */
     public function __construct(EngineInterface $engine, SecurityContextInterface $securityContext, Request $request, OAuthTokenProviderInterface $tokenProvider)
     {

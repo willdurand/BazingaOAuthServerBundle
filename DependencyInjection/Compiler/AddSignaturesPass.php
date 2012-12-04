@@ -24,7 +24,7 @@ class AddSignaturesPass implements CompilerPassInterface
      * Get all Signature services based on their tag ('oauth.signature_service') and register them
      * to the OAuthServerService.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container    The container.
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container The container.
      */
     public function process(ContainerBuilder $container)
     {
@@ -47,7 +47,7 @@ class AddSignaturesPass implements CompilerPassInterface
      * Register a SignatureService in the OAuthServerService.
      *
      * @param Reference $id                 The server service id.
-     * @param string $signatureServiceId    The service identifier.
+     * @param string    $signatureServiceId The service identifier.
      */
     protected function registerSignatureService($id, $signatureServiceId)
     {

@@ -142,7 +142,7 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
      * Constructor.
      *
      * @param OAuthConsumerProviderInterface $consumerProvider The consumer provider.
-     * @param OAuthTokenProviderInterface $tokenProvider       The consumer provider.
+     * @param OAuthTokenProviderInterface    $tokenProvider    The consumer provider.
      */
     public function __construct(OAuthConsumerProviderInterface $consumerProvider, OAuthTokenProviderInterface $tokenProvider, OAuthNonceProviderInterface $nonceProvider)
     {
@@ -209,8 +209,8 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
     /**
      * Returns a signature service identified by its name.
      *
-     * @param string $signatureServiceName      A signature service name.
-     * @return OAuthSignatureInterface          The signature service or <code>null</code> if not found.
+     * @param  string                  $signatureServiceName A signature service name.
+     * @return OAuthSignatureInterface The signature service or <code>null</code> if not found.
      */
     protected function getSignatureService($signatureServiceName)
     {
@@ -254,8 +254,8 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
     /**
      * Check if the provided timestamp is valid or not.
      *
-     * @param string $oauthTimestamp   A timestamp string.
-     * @return boolean  <code>true</code> if the timestamp is valid,
+     * @param  string  $oauthTimestamp A timestamp string.
+     * @return boolean <code>true</code> if the timestamp is valid,
      *                  <code>false</code> otherwise.
      */
     protected function checkTimestamp($oauthTimestamp)
@@ -269,8 +269,8 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
     /**
      * Check if the provided version is valid or not.
      *
-     * @param string $oauthVersion a version.
-     * @return boolean  <code>true</code> if the version is valid,
+     * @param  string  $oauthVersion a version.
+     * @return boolean <code>true</code> if the version is valid,
      *                  <code>false</code> otherwise.
      */
     protected function checkVersion($oauthVersion)
@@ -282,7 +282,7 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
      * Normalize request parameters.
      * @see http://oauth.net/core/1.O/#rfc.section.9.1.1
      *
-     * @param array $requestParameters  An array of request parameters to normalize.
+     * @param  array  $requestParameters An array of request parameters to normalize.
      * @return string
      */
     protected function normalizeRequestParameters($requestParameters)
@@ -316,9 +316,9 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
      * Concatenate request elements.
      * @see http://oauth.net/core/1.O/#rfc.section.9.1.3
      *
-     * @param OAuthSignatureInterface $signatureService     A signature service.
-     * @param string $requestMethod     The request method (POST, GET, ...)
-     * @param string $requestUrl        The request url (see http://oauth.net/core/1.0/#rfc.section.9.1.2)
+     * @param  OAuthSignatureInterface $signatureService A signature service.
+     * @param  string                  $requestMethod    The request method (POST, GET, ...)
+     * @param  string                  $requestUrl       The request url (see http://oauth.net/core/1.0/#rfc.section.9.1.2)
      * @return string
      */
     protected function getSignatureBaseString(OAuthSignatureInterface $signatureService, $requestMethod, $requestUrl, $normalizedParameters)
@@ -333,12 +333,12 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
     /**
      * Calculate the signature and compare it to the given signature.
      *
-     * @param OAuthConsumerInterface $consumer  A consumer.
-     * @param OAuthTokenInterface $token        A token.
-     * @param array $requestParameters          An array of request parameters.
-     * @param string $requestMethod             The request method.
-     * @param string $requestUrl                The request UI
-     * @return boolean   <code>true</code> if the provided signature is correct,
+     * @param  OAuthConsumerInterface $consumer          A consumer.
+     * @param  OAuthTokenInterface    $token             A token.
+     * @param  array                  $requestParameters An array of request parameters.
+     * @param  string                 $requestMethod     The request method.
+     * @param  string                 $requestUrl        The request UI
+     * @return boolean                <code>true</code> if the provided signature is correct,
      *                   <code>false</code> otherwise.
      */
     protected function approveSignature(OAuthConsumerInterface $consumer, OAuthTokenInterface $token = null, $requestParameters, $requestMethod, $requestUrl)
@@ -356,9 +356,9 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
     /**
      * Returns a string for a given token according to the RFC.
      *
-     * @param OAuthTokenInterface $token    A token.
-     * @param array $extras                 An array of extra parameters to add in the response.
-     * @param integer $lifetime             The token lifetime.
+     * @param  OAuthTokenInterface $token    A token.
+     * @param  array               $extras   An array of extra parameters to add in the response.
+     * @param  integer             $lifetime The token lifetime.
      * @return string
      */
     protected function sendToken(OAuthTokenInterface $token, $lifetime = 3600, array $extras = array())

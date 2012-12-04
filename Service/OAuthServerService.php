@@ -41,12 +41,13 @@ class OAuthServerService extends OAuthAbstractServerService
      * Proxy method that handles the error logic.
      * Returns a consumer based on its key.
      *
-     * @param string $oauth_consumer_key    A consumer key.
-     * @return OAuthConsumerInterface       A consumer or <code>null</code>.
+     * @param  string                 $oauth_consumer_key A consumer key.
+     * @return OAuthConsumerInterface A consumer or <code>null</code>.
      */
     protected function getConsumerByKey($oauth_consumer_key)
     {
         $consumer = $this->consumerProvider->getConsumerByKey($oauth_consumer_key);
+
         return $this->checkConsumer($consumer);
     }
 
@@ -54,8 +55,8 @@ class OAuthServerService extends OAuthAbstractServerService
      * Proxy method that handles the error logic.
      * Returns a consumer based on its request token.
      *
-     * @param OAuthRequestTokenInterface $requestToken   A request token.
-     * @return OAuthConsumerInterface    A consumer or <code>null</code>.
+     * @param  OAuthRequestTokenInterface $requestToken A request token.
+     * @return OAuthConsumerInterface     A consumer or <code>null</code>.
      */
     protected function getConsumerByRequestToken(OAuthRequestTokenInterface $requestToken)
     {
@@ -65,7 +66,7 @@ class OAuthServerService extends OAuthAbstractServerService
     /**
      * Proxy method that handles the error logic.
      *
-     * @param string $oauth_token   A request token.
+     * @param  string                     $oauth_token A request token.
      * @return OAuthRequestTokenInterface
      */
     protected function loadRequestToken($oauth_token)
@@ -82,8 +83,8 @@ class OAuthServerService extends OAuthAbstractServerService
     /**
      * Check that the given parameter is a valid consumer.
      *
-     * @param mixed $consumer       Should be a consumer object.
-     * @return OAuthConsumerInterface    A consumer.
+     * @param  mixed                  $consumer Should be a consumer object.
+     * @return OAuthConsumerInterface A consumer.
      */
     protected function checkConsumer($consumer)
     {
@@ -97,8 +98,8 @@ class OAuthServerService extends OAuthAbstractServerService
     /**
      * Handles the logic to validate mandatory parameters.
      *
-     * @param array $requestParameters   An array of request parameters.
-     * @param array $requiredParameters  An array of required parameter names.
+     * @param array $requestParameters  An array of request parameters.
+     * @param array $requiredParameters An array of required parameter names.
      */
     protected function checkRequirements($requestParameters, array $requiredParameters = array())
     {
@@ -125,12 +126,12 @@ class OAuthServerService extends OAuthAbstractServerService
     /**
      * Creates an access token if possible.
      *
-     * @param OAuthConsumerInterface $consumer          A consumer.
-     * @param OAuthUserInterface $user                  A user.
-     * @param array $requestParameters                  An array of request parameters.
-     * @param string $requestMethod                     The request method.
-     * @param string $requestUrl                        The request url.
-     * @param OAuthRequestTokenInterface $requestToken  A request token.
+     * @param OAuthConsumerInterface     $consumer          A consumer.
+     * @param OAuthUserInterface         $user              A user.
+     * @param array                      $requestParameters An array of request parameters.
+     * @param string                     $requestMethod     The request method.
+     * @param string                     $requestUrl        The request url.
+     * @param OAuthRequestTokenInterface $requestToken      A request token.
      *
      * @return string
      */
