@@ -4,7 +4,8 @@ php:
     - 5.3
     - 5.4
 
-env:
-    - SYMFONY_VERSION=origin/master
+before_script:
+  - curl -s http://getcomposer.org/installer | php
+  - php composer.phar --dev install
 
-before_script: php vendor/install_vendors.php
+phpunit: phpunit --coverage-text
