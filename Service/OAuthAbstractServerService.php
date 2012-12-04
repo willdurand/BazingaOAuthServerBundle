@@ -10,14 +10,11 @@ use Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface;
 use Bazinga\OAuthServerBundle\Service\Signature\OAuthSignatureInterface;
 
 /**
- * OAuthAbstractServerService class.
  * OAuth version 1.0.
  *
  * If you want to create your own OAuthServerService implementation,
  * this class provides some useful tools.
  *
- * @package     BazingaOAuthServerBundle
- * @subpackage  Service
  * @author William DURAND <william.durand1@gmail.com>
  */
 abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
@@ -26,32 +23,39 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
      * OAuth version.
      */
     const OAUTH_VERSION                             = '1.0';
+
     /**
      * The default interval time to use when you check the timestamp
      * of a request token.
      */
     const DEFAULT_REQUEST_TOKEN_INTERVAL            = 600;
+
     /**
      * The default duration in seconds of the request token lifetime.
      */
     const DEFAULT_REQUEST_TOKEN_LIFETIME            = 3600;
+
     /**
      * The default duration in seconds of the access token lifetime.
      */
     const DEFAULT_ACCESS_TOKEN_LIFETIME             = 3600;
+
     /**
      * The default duration in seconds of the authorization code lifetime.
      */
     const DEFAULT_AUTH_CODE_LIFETIME                = 30;
+
     /**
      * The default duration in seconds of the refresh token lifetime.
      */
     const DEFAULT_REFRESH_TOKEN_LIFETIME            = 1209600;
+
     /**
      * The version of OAuth used is not supported.
      * @see http://developer.yahoo.com/oauth/guide/oauth-errors.html
      */
     const ERROR_VERSION_REJECTED                    = 'version_rejected';
+
     /**
      * The request has a missing parameter. If all parameters are present,
      * a common reason for this error is typos in the Authorization header.
@@ -60,39 +64,48 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
      * in double quotes.
      */
     const ERROR_PARAMETER_ABSENT                    = 'parameter_absent';
+
     /**
      * The timestamp provided is invalid (either it doesn't have the right
      * format, or it's out of the acceptable window).
      */
     const ERROR_TIMESTAMP_REFUSED                   = 'timestamp_refused';
+
     /**
      * The nonce received is not acceptable.
      */
     const ERROR_NONCE_USED                          = 'nonce_used';
+
     /**
      * The signature method used is unsupported.
      */
     const ERROR_SIGNATURE_METHOD_REJECTED           = 'signature_method_rejected';
+
     /**
      * The signature provided does not match the one calculated by the service.
      */
     const ERROR_SIGNATURE_INVALID                   = 'signature_invalid';
+
     /**
      * The consumer key provided is unsupported.
      */
     const ERROR_CONSUMER_KEY_UNKNOWN                = 'consumer_key_unknown';
+
     /**
      * The access token provided is valid, but has expired.
      */
     const ERROR_TOKEN_EXPIRED                       = 'token_expired';
+
     /**
      * The token provided does not have the right format.
      */
     const ERROR_TOKEN_REJECTED                      = 'token_rejected';
+
     /**
      * The access token does not have the correct access scopes.
      */
     const ERROR_ADDITIONAL_AUTHORIZATION_REQUIRED   = 'additional_authorization_required';
+
     /**
      * The access session handle (ASH) has expired or is invalid.
      * This error usually occurs when refreshing the Access Token.
@@ -100,17 +113,17 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
     const ERROR_PERMISSION_DENIED                   = 'permission_denied';
 
     /**
-     * @var \Bazinga\OAuthServerBundle\Model\Provider\OAuthConsumerProviderInterface
+     * @var OAuthConsumerProviderInterface
      */
     protected $consumerProvider;
 
     /**
-     * @var \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface
+     * @var OAuthTokenProviderInterface
      */
     protected $tokenProvider;
 
     /**
-     * @var \Bazinga\OAuthServerBundle\Model\Provider\OAuthNonceProviderInterface
+     * @var OAuthNonceProviderInterface
      */
     protected $nonceProvider;
 

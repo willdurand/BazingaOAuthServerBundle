@@ -2,6 +2,8 @@
 
 namespace Bazinga\OAuthServerBundle\Controller;
 
+use Bazinga\OAuthServerBundle\Service\OAuthServerServiceInterface;
+use Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -9,41 +11,36 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Templating\EngineInterface;
 
-use Bazinga\OAuthServerBundle\Service\OAuthServerServiceInterface;
-use Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface;
-
 /**
- * ServerController class.
- *
- * @package     BazingaOAuthServerBundle
- * @subpackage  Controller
  * @author William DURAND <william.durand1@gmail.com>
  */
 class ServerController
 {
     /**
-     * @var \Symfony\Component\Routing\RouterInterface
+     * @var RouterInterface
      */
     protected $router;
+
     /**
-     * @var \Symfony\Component\Templating\EngineInterface
+     * @var EngineInterface
      */
     protected $engine;
+
     /**
-     * @var \Symfony\Component\HttpFoundation\Request
+     * @var Request
      */
     protected $request;
+
     /**
-     * @var \Bazinga\OAuthServerBundle\Service\OAuthServerInterface
+     * @var OAuthServerInterface
      */
     protected $serverService;
 
     /**
-     * Default constructor.
-     * @param \Symfony\Component\Routing\RouterInterface                     $router        The router.
-     * @param \Symfony\Component\Templating\EngineInterface                  $engine        The template engine.
-     * @param \Symfony\Component\HttpFoundation\Request                      $request       The request.
-     * @param \Bazinga\OAuthServerBundle\Service\OAuthServerServiceInterface $serverService The OAuth server service.
+     * @param RouterInterface             $router        The router.
+     * @param EngineInterface             $engine        The template engine.
+     * @param Request                     $request       The request.
+     * @param OAuthServerServiceInterface $serverService The OAuth server service.
      */
     public function __construct(RouterInterface $router, EngineInterface $engine, Request $request, OAuthServerServiceInterface $serverService)
     {
@@ -79,7 +76,7 @@ class ServerController
 
         $token = $this->serverService->getTokenProvider()->loadRequestTokenByToken($oauth_token);
 
-        if (! $token instanceof OAuthRequestTokenInterface) {
+        if (!$token instanceof OAuthRequestTokenInterface) {
             throw new HttpException(404);
         }
 
@@ -88,29 +85,27 @@ class ServerController
             return new RedirectResponse(
                 $this->router->generate('bazinga_oauth_login_allow', array(
                     'oauth_token'    => $oauth_token,
-                    'oauth_callback' => $oauth_callback
+                    'oauth_callback' => $oauth_callback,
                 ))
             );
-        } else {
-            if (false !== $this->request->request->get('submit_true', false)) {
-                $authorizeString = $this->serverService->authorize($oauth_token, $oauth_callback);
+        }
 
-                if ('http' === substr($authorizeString, 0, 4)) {
-                    return new RedirectResponse($authorizeString, 302);
-                } else {
-                    return $this->sendResponse($authorizeString);
-                }
+        if (false !== $this->request->request->get('submit_true')) {
+            $authorizeString = $this->serverService->authorize($oauth_token, $oauth_callback);
+
+            if ('http' === substr($authorizeString, 0, 4)) {
+                return new RedirectResponse($authorizeString, 302);
             } else {
-                $this->serverService->getTokenProvider()->deleteRequestToken($token);
-
-                // error page if the user didn't accept to share its information.
-                return new Response($this->engine->render('BazingaOAuthServerBundle::error.html.twig', array(
-                    'consumer' => $token->getConsumer()
-                )));
+                return $this->sendResponse($authorizeString);
             }
         }
 
-        throw new HttpException(404);
+        $this->serverService->getTokenProvider()->deleteRequestToken($token);
+
+        // error page if the user didn't accept to share its information.
+        return new Response($this->engine->render('BazingaOAuthServerBundle::error.html.twig', array(
+            'consumer' => $token->getConsumer(),
+        )));
     }
 
     /**

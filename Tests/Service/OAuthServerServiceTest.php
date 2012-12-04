@@ -3,12 +3,9 @@
 namespace Bazinga\OAuthServerBundle\Tests\Service;
 
 use Bazinga\OAuthServerBundle\Tests\TestCase;
-
 use Bazinga\OAuthServerBundle\Service\OAuthServerService;
 
 /**
- * @package     BazingaOAuthServerBundle
- * @subpackage  Service
  * @author William DURAND <william.durand1@gmail.com>
  */
 class OAuthServerServiceTest extends TestCase

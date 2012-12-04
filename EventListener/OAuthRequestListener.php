@@ -7,12 +7,9 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 /**
- * OAuthRequestListener class.
  * Called early, this listener will add some oauth attributes to the Request if
  * the current Request is an OAuth request (by checking parameters).
  *
- * @package     BazingaOAuthServerBundle
- * @subpackage  EventListener
  * @author William DURAND <william.durand1@gmail.com>
  */
 class OAuthRequestListener
@@ -30,7 +27,9 @@ class OAuthRequestListener
         $parameters = $this->filterRequestParameters($request);
 
         // check if it's an oauth request or not
-        if (false === array_key_exists('oauth_token', $parameters) && false === array_key_exists('oauth_consumer_key', $parameters)) {
+        if (false === array_key_exists('oauth_token', $parameters)&&
+            false === array_key_exists('oauth_consumer_key', $parameters)
+        ) {
             return;
         }
 
@@ -47,7 +46,11 @@ class OAuthRequestListener
      */
     protected function filterRequestParameters(Request $request)
     {
-        return array_merge($this->parseAuthorizationHeader($request), $request->query->all(), $request->request->all());
+        return array_merge(
+            $this->parseAuthorizationHeader($request),
+            $request->query->all(),
+            $request->request->all()
+        );
     }
 
     /**

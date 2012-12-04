@@ -3,11 +3,8 @@
 namespace Bazinga\OAuthServerBundle\Service;
 
 /**
- * OAuthServerServiceInterface interface.
  * Describes how an OAuth server works.
  *
- * @package     BazingaOAuthServerBundle
- * @subpackage  Service
  * @author William DURAND <william.durand1@gmail.com>
  */
 interface OAuthServerServiceInterface
@@ -18,12 +15,14 @@ interface OAuthServerServiceInterface
      * @return \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface
      */
     public function getTokenProvider();
+
     /**
      * Returns the consumer provider in use.
      *
      * @return \Bazinga\OAuthServerBundle\Model\Provider\OAuthConsumerProviderInterface
      */
     public function getConsumerProvider();
+
     /**
      * Obtaining a Request Token
      *
@@ -38,6 +37,7 @@ interface OAuthServerServiceInterface
      * Example: oauth_token=hh5s93j4hdidpola&oauth_token_secret=hdhd0244k9j7ao03&oauth_callback_confirmed=true
      */
     public function requestToken($requestParameters, $requestMethod, $requestUrl);
+
     /**
      * Requesting User Authorization
      *
@@ -54,6 +54,7 @@ interface OAuthServerServiceInterface
      *  oauth_token=hh5s93j4hdidpola&oauth_verifier=hfdp7dh39dks9884
      */
     public function authorize($oauthToken, $oauthCallback = null);
+
     /**
      * Obtaining an Access Token
      *
@@ -67,6 +68,7 @@ interface OAuthServerServiceInterface
      *                                  Example: oauth_token=nnch734d00sl2jdk&oauth_token_secret=pfkkdhi9sl3r4s00
      */
     public function accessToken($requestParameters, $requestMethod, $requestUrl);
+
     /**
      * Accessing Protected Resources
      *

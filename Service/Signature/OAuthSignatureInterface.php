@@ -3,10 +3,6 @@
 namespace Bazinga\OAuthServerBundle\Service\Signature;
 
 /**
- * OAuthSignatureInterface interface.
- *
- * @package     BazingaOAuthServerBundle
- * @subpackage  Signature
  * @author William DURAND <william.durand1@gmail.com>
  */
 interface OAuthSignatureInterface
@@ -22,6 +18,7 @@ interface OAuthSignatureInterface
      * @return string The generated signature.
      */
     public function sign($baseString, $consumerSecret, $tokenSecret = '');
+
     /**
      * Returns the signature name.
      * @return string The signature name.

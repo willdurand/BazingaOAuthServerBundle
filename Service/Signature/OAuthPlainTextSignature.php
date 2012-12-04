@@ -5,8 +5,6 @@ namespace Bazinga\OAuthServerBundle\Service\Signature;
 /**
  * Plain text signature.
  *
- * @package     BazingaOAuthServerBundle
- * @subpackage  Signature
  * @author William DURAND <william.durand1@gmail.com>
  */
 class OAuthPlainTextSignature extends OAuthAbstractSignature

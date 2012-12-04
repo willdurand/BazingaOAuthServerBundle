@@ -5,8 +5,6 @@ namespace Bazinga\OAuthServerBundle\Service\Signature;
 /**
  * HMAC-SHA1 signature.
  *
- * @package     BazingaOAuthServerBundle
- * @subpackage  Signature
  * @author William DURAND <william.durand1@gmail.com>
  */
 class OAuthHmacSha1Signature extends OAuthAbstractSignature

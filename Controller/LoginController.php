@@ -2,49 +2,46 @@
 
 namespace Bazinga\OAuthServerBundle\Controller;
 
+use Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface;
+use Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Templating\EngineInterface;
 
-use Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface;
-use Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface;
-
 /**
- * LoginController class.
- * This controller must be secured to get a valid user.
+ * LoginController: this controller must be secured to get a valid user.
  *
- * @package     BazingaOAuthServerBundle
- * @subpackage  Controller
  * @author William DURAND <william.durand1@gmail.com>
  */
 class LoginController
 {
     /**
-     * @var \Symfony\Component\Templating\EngineInterface
+     * @var EngineInterface
      */
     protected $engine;
+
     /**
-     * @var \Symfony\Component\Security\Core\SecurityContextInterface
+     * @var SecurityContextInterface
      */
     protected $securityContext;
+
     /**
-     * @var \Symfony\Component\HttpFoundation\Request
+     * @var Request
      */
     protected $request;
+
     /**
-     * @var \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface
+     * @var OAuthTokenProviderInterface
      */
     protected $tokenProvider;
 
     /**
-     * Default constructor.
-     *
-     * @param \Symfony\Component\Templating\EngineInterface                         $engine          The template engine.
-     * @param \Symfony\Component\Security\Core\SecurityContextInterface             $securityContext The security context.
-     * @param \Symfony\Component\HttpFoundation\Request                             $request         The request.
-     * @param \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface $tokenProvider   The OAuth token provider.
+     * @param EngineInterface             $engine          The template engine.
+     * @param SecurityContextInterface    $securityContext The security context.
+     * @param Request                     $request         The request.
+     * @param OAuthTokenProviderInterface $tokenProvider   The OAuth token provider.
      */
     public function __construct(EngineInterface $engine, SecurityContextInterface $securityContext, Request $request, OAuthTokenProviderInterface $tokenProvider)
     {

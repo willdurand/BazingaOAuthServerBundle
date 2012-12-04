@@ -7,16 +7,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * AddSignaturesPass class.
- *
- * @package     BazingaOAuthServerBundle
- * @subpackage  DependencyInjection
  * @author William DURAND <william.durand1@gmail.com>
  */
 class AddSignaturesPass implements CompilerPassInterface
 {
     /**
-     * @var \Symfony\Component\DependencyInjection\ContainerBuilder
+     * @var ContainerBuilder
      */
     protected $container;
 
@@ -24,7 +20,7 @@ class AddSignaturesPass implements CompilerPassInterface
      * Get all Signature services based on their tag ('oauth.signature_service') and register them
      * to the OAuthServerService.
      *
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container The container.
+     * @param ContainerBuilder $container The container.
      */
     public function process(ContainerBuilder $container)
     {

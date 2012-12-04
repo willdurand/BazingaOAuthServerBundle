@@ -2,14 +2,11 @@
 
 namespace Bazinga\OAuthServerBundle\Tests\EventListener;
 
-use Symfony\Component\HttpFoundation\Request;
-
 use Bazinga\OAuthServerBundle\Tests\TestCase;
 use Bazinga\OAuthServerBundle\EventListener\OAuthRequestListener;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @package     BazingaOAuthServerBundle
- * @subpackage  EventListener
  * @author William DURAND <william.durand1@gmail.com>
  */
 class OAuthRequestListenerTest extends TestCase

@@ -2,6 +2,7 @@
 
 namespace Bazinga\OAuthServerBundle\Security\Firewall;
 
+use Bazinga\OAuthServerBundle\Security\Authentification\Token\OAuthToken;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
@@ -9,29 +10,24 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Firewall\ListenerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
-use Bazinga\OAuthServerBundle\Security\Authentification\Token\OAuthToken;
-
 /**
- * OAuthListener class.
- *
- * @package     BazingaOAuthServerBundle
- * @subpackage  Security
  * @author William DURAND <william.durand1@gmail.com>
  */
 class OAuthListener implements ListenerInterface
 {
     /**
-     * @var \Symfony\Component\Security\Core\SecurityContextInterface
+     * @var SecurityContextInterface
      */
     protected $securityContext;
+
     /**
-     * @var \Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface
+     * @var AuthenticationManagerInterface
      */
     protected $authenticationManager;
 
     /**
-     * @param \Symfony\Component\Security\Core\SecurityContextInterface                      $securityContext       The security context.
-     * @param \Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface $authenticationManager The authentification manager.
+     * @param SecurityContextInterface       $securityContext       The security context.
+     * @param AuthenticationManagerInterface $authenticationManager The authentification manager.
      */
     public function __construct(SecurityContextInterface $securityContext, AuthenticationManagerInterface $authenticationManager)
     {
@@ -40,7 +36,7 @@ class OAuthListener implements ListenerInterface
     }
 
     /**
-     * @param \Symfony\Component\HttpKernel\Event\GetResponseEvent $event The event.
+     * @param GetResponseEvent $event The event.
      */
     public function handle(GetResponseEvent $event)
     {
@@ -51,7 +47,6 @@ class OAuthListener implements ListenerInterface
         }
 
         $token = new OAuthToken();
-
         $token->setRequestParameters($request->attributes->get('oauth_request_parameters'));
         $token->setRequestMethod($request->attributes->get('oauth_request_method'));
         $token->setRequestUrl($request->attributes->get('oauth_request_url'));

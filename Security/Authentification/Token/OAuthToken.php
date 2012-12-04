@@ -5,10 +5,6 @@ namespace Bazinga\OAuthServerBundle\Security\Authentification\Token;
 use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
 
 /**
- * OAuthToken class.
- *
- * @package     BazingaOAuthServerBundle
- * @subpackage  Security
  * @author William DURAND <william.durand1@gmail.com>
  */
 class OAuthToken extends AbstractToken
@@ -17,10 +13,12 @@ class OAuthToken extends AbstractToken
      * @var array
      */
     protected $requestParameters;
+
     /**
      * @var string
      */
     protected $requestMethod;
+
     /**
      * @var string
      */

@@ -5,8 +5,6 @@ namespace Bazinga\OAuthServerBundle\Service\Signature;
 /**
  * OAuthAbstractSignature class.
  *
- * @package     BazingaOAuthServerBundle
- * @subpackage  Signature
  * @author William DURAND <william.durand1@gmail.com>
  */
 abstract class OAuthAbstractSignature implements OAuthSignatureInterface

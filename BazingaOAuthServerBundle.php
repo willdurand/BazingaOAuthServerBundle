@@ -9,9 +9,6 @@ use Bazinga\OAuthServerBundle\DependencyInjection\Compiler\AddSignaturesPass;
 use Bazinga\OAuthServerBundle\DependencyInjection\Security\Factory\OAuthFactory;
 
 /**
- * BazingaOAuthServerBundle class.
- *
- * @package     BazingaOAuthServerBundle
  * @author William DURAND <william.durand1@gmail.com>
  */
 class BazingaOAuthServerBundle extends Bundle

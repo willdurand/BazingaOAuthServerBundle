@@ -9,10 +9,6 @@ use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * OAuthFactory class.
- *
- * @package     BazingaOAuthServerBundle
- * @subpackage  DependencyInjection
  * @author William DURAND <william.durand1@gmail.com>
  */
 class OAuthFactory implements SecurityFactoryInterface

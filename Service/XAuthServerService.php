@@ -3,24 +3,19 @@
 namespace Bazinga\OAuthServerBundle\Service;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
-
 use Bazinga\OAuthServerBundle\Service\OAuthServerService;
 
 /**
  * xAuth implementation.
  *
- * @package     BazingaOAuthServerBundle
- * @subpackage  Service
  * @author William DURAND <william.durand1@gmail.com>
  */
 class XAuthServerService extends OAuthServerService
 {
-    /**
-     */
     protected $userAuthenticationProvider;
-    /**
-     */
+
     protected $providerKey;
+
     /**
      * An array of required parameters names for the access resource process
      * by using xAuth protocol.

@@ -5,8 +5,6 @@ namespace Bazinga\OAuthServerBundle\ Tests\EventListener;
 use Bazinga\OAuthServerBundle\Tests\TestCase;
 
 /**
- * @package     BazingaOAuthServerBundle
- * @subpackage  EventListener
  * @author William DURAND <william.durand1@gmail.com>
  */
 class OAuthExceptionListenerTest extends TestCase

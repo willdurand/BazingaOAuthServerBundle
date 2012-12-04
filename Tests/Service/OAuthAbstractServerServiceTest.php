@@ -9,8 +9,6 @@ use Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface;
 use Bazinga\OAuthServerBundle\Model\OAuthTokenInterface;
 
 /**
- * @package     BazingaOAuthServerBundle
- * @subpackage  Service
  * @author William DURAND <william.durand1@gmail.com>
  */
 class OAuthAbstractServerServiceTest extends TestCase
@@ -26,7 +24,7 @@ class OAuthAbstractServerServiceTest extends TestCase
     public function getTokenMock($tokenString, $secretString, $expiresIn)
     {
         $token = $this
-            ->getMock('\Bazinga\OAuthServerBundle\Model\OAuthTokenInterface');
+            ->getMock('Bazinga\OAuthServerBundle\Model\OAuthTokenInterface');
 
         $token
             ->expects($this->once())
