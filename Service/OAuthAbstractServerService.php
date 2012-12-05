@@ -363,7 +363,7 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
         $secretToken = (null !== $token) ? $token->getSecret() : '';
         $calculatedSignature = $signatureService->sign($baseString, $consumer->getConsumerSecret(), $secretToken);
 
-        return ($calculatedSignature === $signatureService->urlencode($requestParameters['oauth_signature']));
+        return ($calculatedSignature === $requestParameters['oauth_signature']);
     }
 
     /**
