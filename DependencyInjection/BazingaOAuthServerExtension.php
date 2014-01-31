@@ -18,6 +18,14 @@ class BazingaOAuthServerExtension extends Extension
     /**
      * {@inheritDoc}
      */
+    public function getAlias()
+    {
+        return 'bazinga_oauth_server';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $processor = new Processor();
