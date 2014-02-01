@@ -18,8 +18,10 @@
         <whitelist>
             <directory>./</directory>
             <exclude>
+                <directory>./bin</directory>
                 <directory>./Tests</directory>
                 <directory>./Resources</directory>
+                <directory>./vendor</directory>
             </exclude>
         </whitelist>
     </filter>

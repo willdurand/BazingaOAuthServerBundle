@@ -5,6 +5,7 @@ namespace Bazinga\OAuthServerBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+use Bazinga\OAuthServerBundle\DependencyInjection\BazingaOAuthServerExtension;
 use Bazinga\OAuthServerBundle\DependencyInjection\Compiler\AddSignaturesPass;
 use Bazinga\OAuthServerBundle\DependencyInjection\Security\Factory\OAuthFactory;
 
@@ -14,7 +15,15 @@ use Bazinga\OAuthServerBundle\DependencyInjection\Security\Factory\OAuthFactory;
 class BazingaOAuthServerBundle extends Bundle
 {
     /**
-     * {@inheritdoc}
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->extension = new BazingaOAuthServerExtension();
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function build(ContainerBuilder $container)
     {
