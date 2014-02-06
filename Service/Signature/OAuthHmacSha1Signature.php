@@ -22,7 +22,7 @@ class OAuthHmacSha1Signature extends OAuthAbstractSignature
             $signature = $this->hashHmacSha1($baseString, $key);
         }
 
-        return $this->urlencode(base64_encode($signature));
+        return base64_encode($signature);
     }
 
     /**

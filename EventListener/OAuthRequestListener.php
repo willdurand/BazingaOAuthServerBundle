@@ -61,36 +61,49 @@ class OAuthRequestListener
      */
     protected function parseAuthorizationHeader(Request $request)
     {
-        $headers = array();
+        $authorization = null;
 
-        // Apache does not send all headers in $_SERVER, especially 'Authorization'
-        if (false === $request->headers->get('Authorization', false)) {
+        if (!$request->headers->has('authorization')) {
+            // The Authorization header may not be passed to PHP by Apache;
+            // Trying to obtain it through apache_request_headers()
             if (function_exists('apache_request_headers')) {
-                foreach (apache_request_headers() as $key => $value) {
-                    $request->headers->set($key, $value);
+                $headers = apache_request_headers();
+
+                // Server-side fix for bug in old Android versions (a nice side-effect of this fix means we don't care
+                // about capitalization for Authorization).
+                $headers = array_combine(array_map('ucwords', array_keys($headers)), array_values($headers));
+
+                if (isset($headers['Authorization'])) {
+                    $authorization = $headers['Authorization'];
                 }
             }
+        } else {
+            $authorization = $request->headers->get('authorization');
         }
 
-        if (false !== ($authorization = $request->headers->get('Authorization', false))) {
-            // Remove 'OAuth' string
-            $authorization = substr($authorization, 6);
+        $params = array();
 
-            foreach (preg_split('#,#', $authorization) as $parameter) {
-                $split = preg_split('#=#', $parameter);
+        if (!$authorization) {
+            return $params;
+        }
 
-                if (2 !== count($split)) {
-                    continue;
-                }
+        // Remove 'OAuth' string
+        $authorization = substr($authorization, 6);
 
-                $key   = trim($split[0]);
-                $value = str_replace('"', '', trim($split[1]));
+        foreach (preg_split('#,#', $authorization) as $parameter) {
+            $split = preg_split('#=#', $parameter);
 
-                $headers[$key] = $value;
+            if (2 !== count($split)) {
+                continue;
             }
+
+            $key   = trim($split[0]);
+            $value = str_replace('"', '', trim($split[1]));
+
+            $params[$key] = rawurldecode($value);
         }
 
-        return $headers;
+        return $params;
     }
 
     /**
