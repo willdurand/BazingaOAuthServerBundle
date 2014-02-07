@@ -39,7 +39,7 @@ class BazingaOAuthServerExtension extends Extension
 
         if ($enableXAuth) {
             $container->getDefinition('bazinga.oauth.controller.server')
-                ->replaceArgument(3, new Reference('bazinga.xauth.server_service'));
+                ->replaceArgument(2, new Reference('bazinga.xauth.server_service'));
             $container->getDefinition('bazinga.oauth.security.authentication.provider')
                 ->replaceArgument(1, new Reference('bazinga.xauth.server_service'));
         }
@@ -58,9 +58,9 @@ class BazingaOAuthServerExtension extends Extension
                 ->replaceArgument(2, new Reference($config['service']['nonce_provider']));
 
             $container->getDefinition('bazinga.oauth.controller.server')
-                ->replaceArgument(4, new Reference($config['service']['token_provider']));
-            $container->getDefinition('bazinga.oauth.controller.login')
                 ->replaceArgument(3, new Reference($config['service']['token_provider']));
+            $container->getDefinition('bazinga.oauth.controller.login')
+                ->replaceArgument(2, new Reference($config['service']['token_provider']));
         } else {
             throw new \RuntimeException('Services "consumer_provider" and "token_provider" have to be defined.');
         }

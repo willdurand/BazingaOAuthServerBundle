@@ -27,26 +27,19 @@ class ServerController
     protected $engine;
 
     /**
-     * @var Request
-     */
-    protected $request;
-
-    /**
-     * @var OAuthServerInterface
+     * @var OAuthServerServiceInterface
      */
     protected $serverService;
 
     /**
      * @param RouterInterface             $router        The router.
      * @param EngineInterface             $engine        The template engine.
-     * @param Request                     $request       The request.
      * @param OAuthServerServiceInterface $serverService The OAuth server service.
      */
-    public function __construct(RouterInterface $router, EngineInterface $engine, Request $request, OAuthServerServiceInterface $serverService)
+    public function __construct(RouterInterface $router, EngineInterface $engine, OAuthServerServiceInterface $serverService)
     {
         $this->router  = $router;
         $this->engine  = $engine;
-        $this->request = $request;
         $this->serverService = $serverService;
     }
 
@@ -54,12 +47,12 @@ class ServerController
      * Get a request token.
      * OAuth v1.0
      */
-    public function requestTokenAction()
+    public function requestTokenAction(Request $request)
     {
         $data = $this->serverService->requestToken(
-            $this->request->attributes->get('oauth_request_parameters'),
-            $this->request->attributes->get('oauth_request_method'),
-            $this->request->attributes->get('oauth_request_url')
+            $request->attributes->get('oauth_request_parameters'),
+            $request->attributes->get('oauth_request_method'),
+            $request->attributes->get('oauth_request_url')
         );
 
         return $this->sendResponse($data);
@@ -69,10 +62,10 @@ class ServerController
      * Get user authorization.
      * OAuth v1.0
      */
-    public function authorizeAction()
+    public function authorizeAction(Request $request)
     {
-        $oauth_token    = $this->request->get('oauth_token', null);
-        $oauth_callback = $this->request->get('oauth_callback', null);
+        $oauth_token    = $request->get('oauth_token', null);
+        $oauth_callback = $request->get('oauth_callback', null);
 
         $token = $this->serverService->getTokenProvider()->loadRequestTokenByToken($oauth_token);
 
@@ -80,7 +73,7 @@ class ServerController
             throw new HttpException(404);
         }
 
-        if ('GET' === $this->request->getMethod()) {
+        if ('GET' === $request->getMethod()) {
             // redirect to the secured 'allow' page
             return new RedirectResponse(
                 $this->router->generate('bazinga_oauth_login_allow', array(
@@ -90,7 +83,7 @@ class ServerController
             );
         }
 
-        if (false !== $this->request->request->get('submit_true')) {
+        if (false !== $request->request->get('submit_true')) {
             $authorizeString = $this->serverService->authorize($oauth_token, $oauth_callback);
 
             if ('http' === substr($authorizeString, 0, 4)) {
@@ -112,12 +105,12 @@ class ServerController
      * Exchange a request token for an access token.
      * OAuth v1.0
      */
-    public function accessTokenAction()
+    public function accessTokenAction(Request $request)
     {
         $data = $this->serverService->accessToken(
-            $this->request->attributes->get('oauth_request_parameters'),
-            $this->request->attributes->get('oauth_request_method'),
-            $this->request->attributes->get('oauth_request_url')
+            $request->attributes->get('oauth_request_parameters'),
+            $request->attributes->get('oauth_request_method'),
+            $request->attributes->get('oauth_request_url')
         );
 
         return $this->sendResponse($data);

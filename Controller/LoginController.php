@@ -28,11 +28,6 @@ class LoginController
     protected $securityContext;
 
     /**
-     * @var Request
-     */
-    protected $request;
-
-    /**
      * @var OAuthTokenProviderInterface
      */
     protected $tokenProvider;
@@ -40,13 +35,11 @@ class LoginController
     /**
      * @param EngineInterface             $engine          The template engine.
      * @param SecurityContextInterface    $securityContext The security context.
-     * @param Request                     $request         The request.
      * @param OAuthTokenProviderInterface $tokenProvider   The OAuth token provider.
      */
-    public function __construct(EngineInterface $engine, SecurityContextInterface $securityContext, Request $request, OAuthTokenProviderInterface $tokenProvider)
+    public function __construct(EngineInterface $engine, SecurityContextInterface $securityContext, OAuthTokenProviderInterface $tokenProvider)
     {
         $this->engine  = $engine;
-        $this->request = $request;
         $this->securityContext = $securityContext;
         $this->tokenProvider   = $tokenProvider;
     }
@@ -55,10 +48,10 @@ class LoginController
      * Present a form to the user to accept or not to share
      * its information with the consumer.
      */
-    public function allowAction()
+    public function allowAction(Request $request)
     {
-        $oauth_token    = $this->request->get('oauth_token', null);
-        $oauth_callback = $this->request->get('oauth_callback', null);
+        $oauth_token    = $request->get('oauth_token', null);
+        $oauth_callback = $request->get('oauth_callback', null);
 
         if ($this->securityContext->isGranted('IS_AUTHENTICATED_FULLY')) {
             $token = $this->tokenProvider->loadRequestTokenByToken($oauth_token);

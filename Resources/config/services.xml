@@ -27,17 +27,15 @@
 
     <services>
         <!-- Controllers -->
-        <service id="bazinga.oauth.controller.server" class="%bazinga.oauth.controller.server.class%" scope="request">
+        <service id="bazinga.oauth.controller.server" class="%bazinga.oauth.controller.server.class%">
             <argument type="service" id="router" />
             <argument type="service" id="templating" />
-            <argument type="service" id="request" />
             <argument type="service" id="bazinga.oauth.server_service" />
             <argument></argument> <!-- token provider -->
         </service>
-        <service id="bazinga.oauth.controller.login" class="%bazinga.oauth.controller.login.class%" scope="request">
+        <service id="bazinga.oauth.controller.login" class="%bazinga.oauth.controller.login.class%">
             <argument type="service" id="templating" />
             <argument type="service" id="security.context" />
-            <argument type="service" id="request" />
             <argument></argument> <!-- token provider -->
         </service>
 
