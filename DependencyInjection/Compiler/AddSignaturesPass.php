@@ -30,7 +30,7 @@ class AddSignaturesPass implements CompilerPassInterface
 
         // get the server service id
         $id = $container->getDefinition('bazinga.oauth.controller.server')
-            ->getArgument(3);
+            ->getArgument(2);
 
         $this->container = $container;
 
