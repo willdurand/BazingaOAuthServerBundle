@@ -30,14 +30,14 @@ class OAuthHmacSha1SignatureTest extends TestCase
 
         $tokenSecret    = NULL;
         $this->assertEquals(
-            'egQqG5AJep5sJ7anhXju1unge2I%3D',
+            'egQqG5AJep5sJ7anhXju1unge2I=',
             $this->method->sign($baseString, $consumerSecret, $tokenSecret),
             'token secret is null'
         );
 
         $tokenSecret    = 'ts';
         $this->assertEquals(
-            'VZVjXceV7JgPq%2FdOTnNmEfO0Fv8%3D',
+            'VZVjXceV7JgPq/dOTnNmEfO0Fv8=',
             $this->method->sign($baseString, $consumerSecret, $tokenSecret),
             'token secret is not null'
         );
