@@ -8,9 +8,8 @@
         <parameter key="bazinga.oauth.controller.server.class">Bazinga\OAuthServerBundle\Controller\ServerController</parameter>
         <parameter key="bazinga.oauth.controller.login.class">Bazinga\OAuthServerBundle\Controller\LoginController</parameter>
 
-        <!-- OAuth server service -->
-        <parameter key="bazinga.oauth.server_service.class">Bazinga\OAuthServerBundle\Service\OAuthServerService</parameter>
-        <parameter key="bazinga.xauth.server_service.class">Bazinga\OAuthServerBundle\Service\XAuthServerService</parameter>
+        <parameter key="bazinga.oauth.server_service.oauth.class">Bazinga\OAuthServerBundle\Service\OAuthServerService</parameter>
+        <parameter key="bazinga.oauth.server_service.xauth.class">Bazinga\OAuthServerBundle\Service\XAuthServerService</parameter>
 
         <!-- Signatures -->
         <parameter key="bazinga.oauth.signature.plaintext.class">Bazinga\OAuthServerBundle\Service\Signature\OAuthPlainTextSignature</parameter>
@@ -40,13 +39,7 @@
         </service>
 
         <!-- OAuth server services -->
-        <service id="bazinga.oauth.server_service" class="%bazinga.oauth.server_service.class%">
-            <argument></argument> <!-- consumer provider -->
-            <argument></argument> <!-- token provider -->
-            <argument></argument> <!-- nonce provider -->
-            <argument type="service" id="logger" />
-        </service>
-        <service id="bazinga.xauth.server_service" class="%bazinga.xauth.server_service.class%">
+        <service id="bazinga.oauth.server_service">
             <argument></argument> <!-- consumer provider -->
             <argument></argument> <!-- token provider -->
             <argument></argument> <!-- nonce provider -->
