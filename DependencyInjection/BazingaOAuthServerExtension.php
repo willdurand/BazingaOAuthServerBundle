@@ -35,24 +35,20 @@ class BazingaOAuthServerExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        $enableXAuth = isset($config['enable_xauth']) && true === $config['enable_xauth'];
-
-        if ($enableXAuth) {
-            $container->getDefinition('bazinga.oauth.controller.server')
-                ->replaceArgument(2, new Reference('bazinga.xauth.server_service'));
-            $container->getDefinition('bazinga.oauth.security.authentication.provider')
-                ->replaceArgument(1, new Reference('bazinga.xauth.server_service'));
+        $serverServiceClass = '%bazinga.oauth.server_service.oauth.class%';
+        if (isset($config['enable_xauth']) && true === $config['enable_xauth']) {
+            $serverServiceClass = '%bazinga.oauth.server_service.xauth.class%';
         }
+
+        $container->getDefinition('bazinga.oauth.server_service')->setClass($serverServiceClass);
 
         if (isset($config['service']) &&
             isset($config['service']['consumer_provider']) &&
             isset($config['service']['token_provider']) &&
             isset($config['service']['nonce_provider'])
         ) {
-            $serverServiceId = (true === $enableXAuth) ? 'bazinga.xauth.server_service' : 'bazinga.oauth.server_service';
-
             $container
-                ->getDefinition($serverServiceId)
+                ->getDefinition('bazinga.oauth.server_service')
                 ->replaceArgument(0, new Reference($config['service']['consumer_provider']))
                 ->replaceArgument(1, new Reference($config['service']['token_provider']))
                 ->replaceArgument(2, new Reference($config['service']['nonce_provider']));
