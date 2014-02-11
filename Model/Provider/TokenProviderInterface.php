@@ -61,4 +61,9 @@ interface TokenProviderInterface
      * @return mixed
      */
     public function deleteAccessToken(AccessTokenInterface $accessToken);
+
+    /**
+     * @return int The number of tokens deleted.
+     */
+    public function deleteExpired();
 }
