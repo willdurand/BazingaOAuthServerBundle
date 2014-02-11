@@ -2,15 +2,19 @@
 
 namespace Bazinga\OAuthServerBundle\Model;
 
-use Bazinga\OAuthServerBundle\Model\OAuthTokenInterface;
-
 /**
  * This interface represents an OAuth request token.
  *
  * @author William DURAND <william.durand1@gmail.com>
  */
-interface OAuthRequestTokenInterface extends OAuthTokenInterface
+interface RequestTokenInterface extends TokenInterface
 {
+    /**
+     * Sets the verifier string.
+     * @param string $verifier
+     */
+    public function setVerifier($verifier);
+
     /**
      * Returns the verifier string.
      * @return string

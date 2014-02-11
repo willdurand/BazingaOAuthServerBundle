@@ -46,9 +46,9 @@ In order to use this bundle, you have to configure it.
 
 First, you have to implement three services:
 
-* a **consumer provider** service by implementing the `OAuthConsumerProviderInterface` interface;
-* a **token provider** service by implementing the `OAuthTokenProviderInterface` interface;
-* a **nonce provider** service by implementing the `OAuthNonceProviderInterface` interface.
+* a **consumer provider** service by implementing the `ConsumerProviderInterface` interface;
+* a **token provider** service by implementing the `TokenProviderInterface` interface;
+* a **nonce provider** service by implementing the `NonceProviderInterface` interface.
 
 These services have to be registered in the Dependency Injection container.
 

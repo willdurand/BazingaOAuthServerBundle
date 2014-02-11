@@ -12,14 +12,14 @@ interface OAuthServerServiceInterface
     /**
      * Returns the token provider in use.
      *
-     * @return \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface
+     * @return \Bazinga\OAuthServerBundle\Model\Provider\TokenProviderInterface
      */
     public function getTokenProvider();
 
     /**
      * Returns the consumer provider in use.
      *
-     * @return \Bazinga\OAuthServerBundle\Model\Provider\OAuthConsumerProviderInterface
+     * @return \Bazinga\OAuthServerBundle\Model\Provider\ConsumerProviderInterface
      */
     public function getConsumerProvider();
 

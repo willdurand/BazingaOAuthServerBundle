@@ -2,10 +2,10 @@
 
 namespace Bazinga\OAuthServerBundle\Service;
 
-use Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface;
-use Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface;
-use Bazinga\OAuthServerBundle\Model\OAuthAccessTokenInterface;
-use Bazinga\OAuthServerBundle\Model\OAuthUserInterface;
+use Bazinga\OAuthServerBundle\Model\ConsumerInterface;
+use Bazinga\OAuthServerBundle\Model\RequestTokenInterface;
+use Bazinga\OAuthServerBundle\Model\AccessTokenInterface;
+use Bazinga\OAuthServerBundle\Model\UserInterface;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
@@ -37,8 +37,8 @@ class OAuthServerService extends OAuthAbstractServerService
      * Proxy method that handles the error logic.
      * Returns a consumer based on its key.
      *
-     * @param  string                 $oauth_consumer_key A consumer key.
-     * @return OAuthConsumerInterface A consumer or <code>null</code>.
+     * @param  string            $oauth_consumer_key A consumer key.
+     * @return ConsumerInterface A consumer or <code>null</code>.
      */
     protected function getConsumerByKey($oauth_consumer_key)
     {
@@ -51,10 +51,10 @@ class OAuthServerService extends OAuthAbstractServerService
      * Proxy method that handles the error logic.
      * Returns a consumer based on its request token.
      *
-     * @param  OAuthRequestTokenInterface $requestToken A request token.
-     * @return OAuthConsumerInterface     A consumer or <code>null</code>.
+     * @param  RequestTokenInterface $requestToken A request token.
+     * @return ConsumerInterface     A consumer or <code>null</code>.
      */
-    protected function getConsumerByRequestToken(OAuthRequestTokenInterface $requestToken)
+    protected function getConsumerByRequestToken(RequestTokenInterface $requestToken)
     {
         return $this->checkConsumer($requestToken->getConsumer());
     }
@@ -62,14 +62,14 @@ class OAuthServerService extends OAuthAbstractServerService
     /**
      * Proxy method that handles the error logic.
      *
-     * @param  string                     $oauth_token A request token.
-     * @return OAuthRequestTokenInterface
+     * @param  string                $oauth_token A request token.
+     * @return RequestTokenInterface
      */
     protected function loadRequestToken($oauth_token)
     {
         $token = $this->tokenProvider->loadRequestTokenByToken($oauth_token);
 
-        if (! $token instanceof OAuthRequestTokenInterface || $token->hasExpired()) {
+        if (! $token instanceof RequestTokenInterface || $token->hasExpired()) {
             throw new HttpException(401, self::ERROR_TOKEN_REJECTED);
         }
 
@@ -79,12 +79,12 @@ class OAuthServerService extends OAuthAbstractServerService
     /**
      * Check that the given parameter is a valid consumer.
      *
-     * @param  mixed                  $consumer Should be a consumer object.
-     * @return OAuthConsumerInterface A consumer.
+     * @param  mixed             $consumer Should be a consumer object.
+     * @return ConsumerInterface A consumer.
      */
     protected function checkConsumer($consumer)
     {
-        if (! $consumer instanceof OAuthConsumerInterface) {
+        if (! $consumer instanceof ConsumerInterface) {
             throw new HttpException(401, self::ERROR_CONSUMER_KEY_UNKNOWN);
         }
 
@@ -122,22 +122,22 @@ class OAuthServerService extends OAuthAbstractServerService
     /**
      * Creates an access token if possible.
      *
-     * @param OAuthConsumerInterface     $consumer          A consumer.
-     * @param OAuthUserInterface         $user              A user.
-     * @param array                      $requestParameters An array of request parameters.
-     * @param string                     $requestMethod     The request method.
-     * @param string                     $requestUrl        The request url.
-     * @param OAuthRequestTokenInterface $requestToken      A request token.
+     * @param ConsumerInterface     $consumer          A consumer.
+     * @param UserInterface         $user              A user.
+     * @param array                 $requestParameters An array of request parameters.
+     * @param string                $requestMethod     The request method.
+     * @param string                $requestUrl        The request url.
+     * @param RequestTokenInterface $requestToken      A request token.
      *
      * @return string
      */
-    protected function createAccessToken(OAuthConsumerInterface $consumer, OAuthUserInterface $user, $requestParameters,
-        $requestMethod, $requestUrl, OAuthRequestTokenInterface $requestToken = null)
+    protected function createAccessToken(ConsumerInterface $consumer, UserInterface $user, $requestParameters,
+        $requestMethod, $requestUrl, RequestTokenInterface $requestToken = null)
     {
         if (true === $this->approveSignature($consumer, $requestToken, $requestParameters, $requestMethod, $requestUrl)) {
             $token = $this->tokenProvider->createAccessToken($consumer, $user);
 
-            if ($token instanceof OAuthAccessTokenInterface) {
+            if ($token instanceof AccessTokenInterface) {
                 if (null !== $requestToken) {
                     $this->tokenProvider->deleteRequestToken($requestToken);
                 }
@@ -233,7 +233,7 @@ class OAuthServerService extends OAuthAbstractServerService
             $this->nonceProvider->registerNonceAndTimestamp($requestParameters['oauth_nonce'], $requestParameters['oauth_timestamp'], $consumer);
         }
 
-        if (! $token instanceof OAuthAccessTokenInterface) {
+        if (! $token instanceof AccessTokenInterface) {
             throw new HttpException(401, self::ERROR_TOKEN_REJECTED);
         }
 

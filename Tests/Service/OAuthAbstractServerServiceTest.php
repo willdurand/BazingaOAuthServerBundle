@@ -5,8 +5,8 @@ namespace Bazinga\OAuthServerBundle\Tests\Service;
 use Bazinga\OAuthServerBundle\Tests\TestCase;
 
 use Bazinga\OAuthServerBundle\Service\OAuthAbstractServerService;
-use Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface;
-use Bazinga\OAuthServerBundle\Model\OAuthTokenInterface;
+use Bazinga\OAuthServerBundle\Model\ConsumerInterface;
+use Bazinga\OAuthServerBundle\Model\TokenInterface;
 
 /**
  * @author William DURAND <william.durand1@gmail.com>
@@ -24,7 +24,7 @@ class OAuthAbstractServerServiceTest extends TestCase
     public function getTokenMock($tokenString, $secretString, $expiresIn)
     {
         $token = $this
-            ->getMock('Bazinga\OAuthServerBundle\Model\OAuthTokenInterface');
+            ->getMock('Bazinga\OAuthServerBundle\Model\TokenInterface');
 
         $token
             ->expects($this->once())
@@ -163,12 +163,12 @@ class ConcreteOauthServerService extends OAuthAbstractServerService
         return parent::normalizeRequestParameters($requestParameters);
     }
 
-    public function approveSignature(OAuthConsumerInterface $consumer, OAuthTokenInterface $token = null, $requestParameters, $requestMethod, $requestUrl)
+    public function approveSignature(ConsumerInterface $consumer, TokenInterface $token = null, $requestParameters, $requestMethod, $requestUrl)
     {
         return parent::approveSignature($consumer, $token, $requestParameters, $requestMethod, $requestUrl);
     }
 
-    public function sendToken(OAuthTokenInterface $token, $lifetime = 3600, array $extras = array())
+    public function sendToken(TokenInterface $token, $lifetime = 3600, array $extras = array())
     {
         return parent::sendToken($token, $lifetime, $extras);
     }

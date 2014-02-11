@@ -37,7 +37,7 @@ class OAuthServerServiceTest extends TestCase
             $this->assertEquals(OAuthServerService::ERROR_CONSUMER_KEY_UNKNOWN, $e->getMessage(), 'Check message');
         }
 
-        $consumer = $this->getMock('\Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface');
+        $consumer = $this->getMock('\Bazinga\OAuthServerBundle\Model\ConsumerInterface');
 
         try {
             $this->assertTrue(true, $this->service->checkConsumer($consumer));
