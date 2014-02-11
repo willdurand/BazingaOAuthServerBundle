@@ -61,4 +61,9 @@ interface OAuthTokenProviderInterface
      * @return mixed
      */
     public function deleteAccessToken(OAuthAccessTokenInterface $accessToken);
+
+    /**
+     * @return int The number of tokens deleted.
+     */
+    public function deleteExpired();
 }
