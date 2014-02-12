@@ -15,14 +15,6 @@ class RequestToken extends Token implements RequestTokenInterface
     /**
      * {@inheritDoc}
      */
-    public function setVerifier($verifier)
-    {
-        $this->verifier = $verifier;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getVerifier()
     {
         return $this->verifier;

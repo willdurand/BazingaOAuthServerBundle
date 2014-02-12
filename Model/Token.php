@@ -35,14 +35,6 @@ class Token implements TokenInterface
     /**
      * {@inheritDoc}
      */
-    public function setToken($token)
-    {
-        $this->token = $token;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getToken()
     {
         return $this->token;
@@ -51,25 +43,9 @@ class Token implements TokenInterface
     /**
      * {@inheritDoc}
      */
-    public function setSecret($secret)
-    {
-        $this->secret = $secret;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getSecret()
     {
         return $this->secret;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setExpiresAt($expiresAt)
-    {
-        $this->expiresAt = $expiresAt;
     }
 
     /**
@@ -107,25 +83,9 @@ class Token implements TokenInterface
     /**
      * {@inheritDoc}
      */
-    public function setUser(UserInterface $user)
-    {
-        $this->user = $user;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setConsumer(ConsumerInterface $consumer)
-    {
-        $this->consumer = $consumer;
     }
 
     /**

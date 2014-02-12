@@ -30,25 +30,9 @@ class Consumer implements ConsumerInterface
     /**
      * {@inheritDoc}
      */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setConsumerKey($consumerKey)
-    {
-        $this->consumerKey = $consumerKey;
     }
 
     /**
@@ -62,25 +46,9 @@ class Consumer implements ConsumerInterface
     /**
      * {@inheritDoc}
      */
-    public function setConsumerSecret($consumerSecret)
-    {
-        $this->consumerSecret = $consumerSecret;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getConsumerSecret()
     {
         return $this->consumerSecret;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setCallback($callback)
-    {
-        $this->callback = $callback;
     }
 
     /**

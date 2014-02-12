@@ -10,34 +10,16 @@ namespace Bazinga\OAuthServerBundle\Model;
 interface TokenInterface
 {
     /**
-     * Sets the token string
-     * @param string $token
-     */
-    public function setToken($token);
-
-    /**
      * Returns the token string.
      * @return string
      */
     public function getToken();
 
     /**
-     * Sets the secret string
-     * @param string $secret
-     */
-    public function setSecret($secret);
-
-    /**
      * Returns the secret string.
      * @return string
      */
     public function getSecret();
-
-    /**
-     * Sets the expiration time.
-     * @param int $expiresAt
-     */
-    public function setExpiresAt($expiresAt);
 
     /**
      * Returns the expiration time.
@@ -58,22 +40,10 @@ interface TokenInterface
     public function hasExpired();
 
     /**
-     * Sets the user for this token.
-     * @param \Bazinga\OAuthServerBundle\Model\UserInterface $user
-     */
-    public function setUser(UserInterface $user);
-
-    /**
      * Returns the user for this token.
      * @return \Bazinga\OAuthServerBundle\Model\UserInterface
      */
     public function getUser();
-
-    /**
-     * Sets the consumer for this token.
-     * @param \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface $consumer
-     */
-    public function setConsumer(ConsumerInterface $consumer);
 
     /**
      * Returns the consumer for this token.

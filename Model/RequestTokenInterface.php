@@ -10,12 +10,6 @@ namespace Bazinga\OAuthServerBundle\Model;
 interface RequestTokenInterface extends TokenInterface
 {
     /**
-     * Sets the verifier string.
-     * @param string $verifier
-     */
-    public function setVerifier($verifier);
-
-    /**
      * Returns the verifier string.
      * @return string
      */
