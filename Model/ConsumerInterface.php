@@ -7,7 +7,7 @@ namespace Bazinga\OAuthServerBundle\Model;
  *
  * @author William DURAND <william.durand1@gmail.com>
  */
-interface OAuthConsumerInterface
+interface ConsumerInterface
 {
     /**
      * Returns the consumer name.

@@ -2,8 +2,8 @@
 
 namespace Bazinga\OAuthServerBundle\Controller;
 
-use Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface;
-use Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface;
+use Bazinga\OAuthServerBundle\Model\RequestTokenInterface;
+use Bazinga\OAuthServerBundle\Model\Provider\TokenProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -28,16 +28,16 @@ class LoginController
     protected $securityContext;
 
     /**
-     * @var OAuthTokenProviderInterface
+     * @var TokenProviderInterface
      */
     protected $tokenProvider;
 
     /**
-     * @param EngineInterface             $engine          The template engine.
-     * @param SecurityContextInterface    $securityContext The security context.
-     * @param OAuthTokenProviderInterface $tokenProvider   The OAuth token provider.
+     * @param EngineInterface          $engine          The template engine.
+     * @param SecurityContextInterface $securityContext The security context.
+     * @param TokenProviderInterface   $tokenProvider   The OAuth token provider.
      */
-    public function __construct(EngineInterface $engine, SecurityContextInterface $securityContext, OAuthTokenProviderInterface $tokenProvider)
+    public function __construct(EngineInterface $engine, SecurityContextInterface $securityContext, TokenProviderInterface $tokenProvider)
     {
         $this->engine  = $engine;
         $this->securityContext = $securityContext;
@@ -56,7 +56,7 @@ class LoginController
         if ($this->securityContext->isGranted('IS_AUTHENTICATED_FULLY')) {
             $token = $this->tokenProvider->loadRequestTokenByToken($oauth_token);
 
-            if ($token instanceof OAuthRequestTokenInterface) {
+            if ($token instanceof RequestTokenInterface) {
                 $this->tokenProvider->setUserForRequestToken($token, $this->securityContext->getToken()->getUser());
 
                 return new Response($this->engine->render('BazingaOAuthServerBundle::authorize.html.twig', array(

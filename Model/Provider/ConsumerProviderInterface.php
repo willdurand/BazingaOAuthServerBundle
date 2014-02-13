@@ -7,11 +7,11 @@ namespace Bazinga\OAuthServerBundle\Model\Provider;
  *
  * @author William DURAND <william.durand1@gmail.com>
  */
-interface OAuthConsumerProviderInterface
+interface ConsumerProviderInterface
 {
     /**
      * @param $consumerKey
-     * @return \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface
+     * @return \Bazinga\OAuthServerBundle\Model\ConsumerInterface
      */
     public function getConsumerByKey($consumerKey);
 }

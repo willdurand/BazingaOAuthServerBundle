@@ -7,7 +7,7 @@ namespace Bazinga\OAuthServerBundle\Model;
  *
  * @author William DURAND <william.durand1@gmail.com>
  */
-interface OAuthTokenInterface
+interface TokenInterface
 {
     /**
      * Returns the token string.
@@ -20,6 +20,12 @@ interface OAuthTokenInterface
      * @return string
      */
     public function getSecret();
+
+    /**
+     * Returns the expiration time.
+     * @return int
+     */
+    public function getExpiresAt();
 
     /**
      * Returns the expiration delay.
@@ -35,13 +41,13 @@ interface OAuthTokenInterface
 
     /**
      * Returns the user for this token.
-     * @return \Bazinga\OAuthServerBundle\Model\OAuthUserInterface
+     * @return \Bazinga\OAuthServerBundle\Model\UserInterface
      */
     public function getUser();
 
     /**
      * Returns the consumer for this token.
-     * @return \Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface
+     * @return \Bazinga\OAuthServerBundle\Model\ConsumerInterface
      */
     public function getConsumer();
 }

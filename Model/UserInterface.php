@@ -7,6 +7,6 @@ namespace Bazinga\OAuthServerBundle\Model;
  *
  * @author William DURAND <william.durand1@gmail.com>
  */
-interface OAuthUserInterface
+interface UserInterface
 {
 }

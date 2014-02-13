@@ -33,7 +33,7 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        /** @var \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface $provider */
+        /** @var \Bazinga\OAuthServerBundle\Model\Provider\TokenProviderInterface $provider */
         $provider = $this->getContainer()->get('bazinga.oauth.server_service')->getTokenProvider();
 
         $result = $provider->deleteExpired();

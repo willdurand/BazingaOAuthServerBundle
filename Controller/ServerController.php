@@ -3,7 +3,7 @@
 namespace Bazinga\OAuthServerBundle\Controller;
 
 use Bazinga\OAuthServerBundle\Service\OAuthServerServiceInterface;
-use Bazinga\OAuthServerBundle\Model\OAuthRequestTokenInterface;
+use Bazinga\OAuthServerBundle\Model\RequestTokenInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -69,7 +69,7 @@ class ServerController
 
         $token = $this->serverService->getTokenProvider()->loadRequestTokenByToken($oauth_token);
 
-        if (!$token instanceof OAuthRequestTokenInterface) {
+        if (!$token instanceof RequestTokenInterface) {
             throw new HttpException(404);
         }
 

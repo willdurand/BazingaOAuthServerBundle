@@ -14,7 +14,7 @@ class CleanCommandTest extends \PHPUnit_Framework_TestCase
 {
     public function testExecute()
     {
-        $tokenProvider = $this->getMock('Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface');
+        $tokenProvider = $this->getMock('Bazinga\OAuthServerBundle\Model\Provider\TokenProviderInterface');
 
         $tokenProvider->expects($this->atLeastOnce())
             ->method('deleteExpired')

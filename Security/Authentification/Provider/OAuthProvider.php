@@ -2,7 +2,7 @@
 
 namespace Bazinga\OAuthServerBundle\Security\Authentification\Provider;
 
-use Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface;
+use Bazinga\OAuthServerBundle\Model\Provider\TokenProviderInterface;
 use Bazinga\OAuthServerBundle\Security\Authentification\Token\OAuthToken;
 use Bazinga\OAuthServerBundle\Service\OAuthServerServiceInterface;
 use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
@@ -26,7 +26,7 @@ class OAuthProvider implements AuthenticationProviderInterface
     protected $serverService;
 
     /**
-     * @var OAuthTokenProviderInterface
+     * @var TokenProviderInterface
      */
     protected $tokenProvider;
 

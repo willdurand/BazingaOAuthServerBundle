@@ -2,11 +2,11 @@
 
 namespace Bazinga\OAuthServerBundle\Service;
 
-use Bazinga\OAuthServerBundle\Model\OAuthConsumerInterface;
-use Bazinga\OAuthServerBundle\Model\OAuthTokenInterface;
-use Bazinga\OAuthServerBundle\Model\Provider\OAuthConsumerProviderInterface;
-use Bazinga\OAuthServerBundle\Model\Provider\OAuthNonceProviderInterface;
-use Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface;
+use Bazinga\OAuthServerBundle\Model\ConsumerInterface;
+use Bazinga\OAuthServerBundle\Model\TokenInterface;
+use Bazinga\OAuthServerBundle\Model\Provider\ConsumerProviderInterface;
+use Bazinga\OAuthServerBundle\Model\Provider\NonceProviderInterface;
+use Bazinga\OAuthServerBundle\Model\Provider\TokenProviderInterface;
 use Bazinga\OAuthServerBundle\Service\Signature\OAuthSignatureInterface;
 
 /**
@@ -113,17 +113,17 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
     const ERROR_PERMISSION_DENIED                   = 'permission_denied';
 
     /**
-     * @var OAuthConsumerProviderInterface
+     * @var ConsumerProviderInterface
      */
     protected $consumerProvider;
 
     /**
-     * @var OAuthTokenProviderInterface
+     * @var TokenProviderInterface
      */
     protected $tokenProvider;
 
     /**
-     * @var OAuthNonceProviderInterface
+     * @var NonceProviderInterface
      */
     protected $nonceProvider;
 
@@ -154,10 +154,10 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
     /**
      * Constructor.
      *
-     * @param OAuthConsumerProviderInterface $consumerProvider The consumer provider.
-     * @param OAuthTokenProviderInterface    $tokenProvider    The consumer provider.
+     * @param ConsumerProviderInterface $consumerProvider The consumer provider.
+     * @param TokenProviderInterface    $tokenProvider    The consumer provider.
      */
-    public function __construct(OAuthConsumerProviderInterface $consumerProvider, OAuthTokenProviderInterface $tokenProvider, OAuthNonceProviderInterface $nonceProvider)
+    public function __construct(ConsumerProviderInterface $consumerProvider, TokenProviderInterface $tokenProvider, NonceProviderInterface $nonceProvider)
     {
         $this->consumerProvider  = $consumerProvider;
         $this->tokenProvider     = $tokenProvider;
@@ -193,7 +193,7 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
 
     /**
      * {@inheritdoc}
-     * @return \Bazinga\OAuthServerBundle\Model\Provider\OAuthTokenProviderInterface
+     * @return \Bazinga\OAuthServerBundle\Model\Provider\TokenProviderInterface
      */
     public function getTokenProvider()
     {
@@ -202,7 +202,7 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
 
     /**
      * {@inheritdoc}
-     * @return \Bazinga\OAuthServerBundle\Model\Provider\OAuthConsumerProviderInterface
+     * @return \Bazinga\OAuthServerBundle\Model\Provider\ConsumerProviderInterface
      */
     public function getConsumerProvider()
     {
@@ -346,15 +346,15 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
     /**
      * Calculate the signature and compare it to the given signature.
      *
-     * @param  OAuthConsumerInterface $consumer          A consumer.
-     * @param  OAuthTokenInterface    $token             A token.
-     * @param  array                  $requestParameters An array of request parameters.
-     * @param  string                 $requestMethod     The request method.
-     * @param  string                 $requestUrl        The request UI
-     * @return boolean                <code>true</code> if the provided signature is correct,
+     * @param  ConsumerInterface $consumer          A consumer.
+     * @param  TokenInterface    $token             A token.
+     * @param  array             $requestParameters An array of request parameters.
+     * @param  string            $requestMethod     The request method.
+     * @param  string            $requestUrl        The request UI
+     * @return boolean           <code>true</code> if the provided signature is correct,
      *                   <code>false</code> otherwise.
      */
-    protected function approveSignature(OAuthConsumerInterface $consumer, OAuthTokenInterface $token = null, $requestParameters, $requestMethod, $requestUrl)
+    protected function approveSignature(ConsumerInterface $consumer, TokenInterface $token = null, $requestParameters, $requestMethod, $requestUrl)
     {
         $signatureService = $this->getSignatureService($requestParameters['oauth_signature_method']);
 
@@ -369,12 +369,12 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
     /**
      * Returns a string for a given token according to the RFC.
      *
-     * @param  OAuthTokenInterface $token    A token.
-     * @param  array               $extras   An array of extra parameters to add in the response.
-     * @param  integer             $lifetime The token lifetime.
+     * @param  TokenInterface $token    A token.
+     * @param  array          $extras   An array of extra parameters to add in the response.
+     * @param  integer        $lifetime The token lifetime.
      * @return string
      */
-    protected function sendToken(OAuthTokenInterface $token, $lifetime = 3600, array $extras = array())
+    protected function sendToken(TokenInterface $token, $lifetime = 3600, array $extras = array())
     {
         $returnedParameters = array();
 
