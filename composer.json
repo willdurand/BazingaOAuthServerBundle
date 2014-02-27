@@ -20,9 +20,8 @@
         "phpunit/phpunit": "~3.7"
     },
     "autoload": {
-        "psr-0": { "Bazinga\\OAuthServerBundle": "" }
+        "psr-4": { "Bazinga\\OAuthServerBundle\\": "" }
     },
-    "target-dir": "Bazinga/OAuthServerBundle",
     "config": {
         "bin-dir": "bin"
     }
