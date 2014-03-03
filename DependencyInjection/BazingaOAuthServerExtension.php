@@ -40,25 +40,16 @@ class BazingaOAuthServerExtension extends Extension
             $serverServiceClass = '%bazinga.oauth.server_service.xauth.class%';
         }
 
-        $container->getDefinition('bazinga.oauth.server_service')->setClass($serverServiceClass);
+        $container
+            ->getDefinition('bazinga.oauth.server_service')
+            ->setClass($serverServiceClass)
+            ->replaceArgument(0, new Reference($config['service']['consumer_provider']))
+            ->replaceArgument(1, new Reference($config['service']['token_provider']))
+            ->replaceArgument(2, new Reference($config['service']['nonce_provider']));
 
-        if (isset($config['service']) &&
-            isset($config['service']['consumer_provider']) &&
-            isset($config['service']['token_provider']) &&
-            isset($config['service']['nonce_provider'])
-        ) {
-            $container
-                ->getDefinition('bazinga.oauth.server_service')
-                ->replaceArgument(0, new Reference($config['service']['consumer_provider']))
-                ->replaceArgument(1, new Reference($config['service']['token_provider']))
-                ->replaceArgument(2, new Reference($config['service']['nonce_provider']));
-
-            $container->getDefinition('bazinga.oauth.controller.server')
-                ->replaceArgument(3, new Reference($config['service']['token_provider']));
-            $container->getDefinition('bazinga.oauth.controller.login')
-                ->replaceArgument(2, new Reference($config['service']['token_provider']));
-        } else {
-            throw new \RuntimeException('Services "consumer_provider" and "token_provider" have to be defined.');
-        }
+        $container->getDefinition('bazinga.oauth.controller.server')
+            ->replaceArgument(3, new Reference($config['service']['token_provider']));
+        $container->getDefinition('bazinga.oauth.controller.login')
+            ->replaceArgument(2, new Reference($config['service']['token_provider']));
     }
 }

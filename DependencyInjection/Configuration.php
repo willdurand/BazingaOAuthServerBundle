@@ -40,8 +40,13 @@ class Configuration implements ConfigurationInterface
         $node
             ->children()
                 ->arrayNode('service')
-                    ->useAttributeAsKey('key')
-                    ->prototype('scalar')->end()
+                    ->isRequired()
+                    ->children()
+                        ->scalarNode('consumer_provider')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('token_provider')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('nonce_provider')->isRequired()->cannotBeEmpty()->end()
+                    ->end()
+                ->end()
             ->end();
     }
 }
