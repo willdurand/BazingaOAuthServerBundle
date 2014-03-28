@@ -35,6 +35,14 @@ class BazingaOAuthServerExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
+        $loader->load(sprintf('%s.xml', $config['mapping']['db_driver']));
+        $container->setParameter('bazinga.oauth.backend_type_' . $config['mapping']['db_driver'], true);
+
+        $container->setParameter('bazinga.oauth.model.consumer.class', $config['mapping']['consumer_class']);
+        $container->setParameter('bazinga.oauth.model.request_token.class', $config['mapping']['request_token_class']);
+        $container->setParameter('bazinga.oauth.model.access_token.class', $config['mapping']['access_token_class']);
+        $container->setParameter('bazinga.oauth.model_manager_name', $config['mapping']['model_manager_name']);
+
         $serverServiceClass = '%bazinga.oauth.server_service.oauth.class%';
         if (isset($config['enable_xauth']) && true === $config['enable_xauth']) {
             $serverServiceClass = '%bazinga.oauth.server_service.xauth.class%';
@@ -43,13 +51,6 @@ class BazingaOAuthServerExtension extends Extension
         $container
             ->getDefinition('bazinga.oauth.server_service')
             ->setClass($serverServiceClass)
-            ->replaceArgument(0, new Reference($config['service']['consumer_provider']))
-            ->replaceArgument(1, new Reference($config['service']['token_provider']))
             ->replaceArgument(2, new Reference($config['service']['nonce_provider']));
-
-        $container->getDefinition('bazinga.oauth.controller.server')
-            ->replaceArgument(3, new Reference($config['service']['token_provider']));
-        $container->getDefinition('bazinga.oauth.controller.login')
-            ->replaceArgument(2, new Reference($config['service']['token_provider']));
     }
 }

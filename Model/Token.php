@@ -5,8 +5,10 @@ namespace Bazinga\OAuthServerBundle\Model;
 /**
  * @author Robin van der Vleuten <robinvdvleuten@gmail.com>
  */
-class Token implements TokenInterface
+abstract class Token implements TokenInterface
 {
+    protected $id;
+
     /**
      * @var string
      */
@@ -18,12 +20,12 @@ class Token implements TokenInterface
     protected $secret;
 
     /**
-     * @var int
+     * @var \DateTime
      */
     protected $expiresAt;
 
     /**
-     * @var \Bazinga\OAuthServerBundle\Model\OAuthUserInterface
+     * @var UserInterface
      */
     protected $user;
 
@@ -35,9 +37,26 @@ class Token implements TokenInterface
     /**
      * {@inheritDoc}
      */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getToken()
     {
         return $this->token;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+        return $this;
     }
 
     /**
@@ -51,6 +70,15 @@ class Token implements TokenInterface
     /**
      * {@inheritDoc}
      */
+    public function setSecret($secret)
+    {
+        $this->secret = $secret;
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getExpiresAt()
     {
         return $this->expiresAt;
@@ -59,10 +87,19 @@ class Token implements TokenInterface
     /**
      * {@inheritDoc}
      */
+    public function setExpiresAt(\DateTime $expiresAt)
+    {
+        $this->expiresAt = $expiresAt;
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getExpiresIn()
     {
         if ($this->expiresAt) {
-            return $this->expiresAt - time();
+            return $this->expiresAt->getTimestamp() - time();
         }
 
         return PHP_INT_MAX;
@@ -74,7 +111,7 @@ class Token implements TokenInterface
     public function hasExpired()
     {
         if ($this->expiresAt) {
-            return time() > $this->expiresAt;
+            return time() > $this->expiresAt->getTimestamp();
         }
 
         return false;
@@ -86,6 +123,24 @@ class Token implements TokenInterface
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUser(UserInterface $user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setConsumer(ConsumerInterface $consumer)
+    {
+        $this->consumer = $consumer;
+        return $this;
     }
 
     /**

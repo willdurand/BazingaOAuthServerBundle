@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="bazinga.oauth.provider.consumer_provider.class">Bazinga\OAuthServerBundle\Doctrine\Provider\ConsumerProvider</parameter>
+        <parameter key="bazinga.oauth.provider.token_provider.class">Bazinga\OAuthServerBundle\Doctrine\Provider\TokenProvider</parameter>
+    </parameters>
+
+    <services>
+        <service id="bazinga.oauth.provider.consumer_provider" class="%bazinga.oauth.provider.consumer_provider.class%" public="false">
+            <argument type="service" id="bazinga.oauth.document_manager" />
+            <argument>%bazinga.oauth.model.consumer.class%</argument>
+        </service>
+
+        <service id="bazinga.oauth.provider.token_provider" class="%bazinga.oauth.provider.token_provider.class%" public="false">
+            <argument type="service" id="bazinga.oauth.document_manager" />
+            <argument>%bazinga.oauth.model.request_token.class%</argument>
+            <argument>%bazinga.oauth.model.access_token.class%</argument>
+        </service>
+
+        <service id="bazinga.oauth.document_manager" factory-service="doctrine_mongodb" factory-method="getManager" class="Doctrine\ODM\MongoDB\DocumentManager" public="false">
+            <argument>%bazinga.oauth.model_manager_name%</argument>
+        </service>
+    </services>
+</container>

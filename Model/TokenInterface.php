@@ -16,16 +16,37 @@ interface TokenInterface
     public function getToken();
 
     /**
+     * Set token
+     * @param string $token
+     * @return self
+     */
+    public function setToken($token);
+
+    /**
      * Returns the secret string.
      * @return string
      */
     public function getSecret();
 
     /**
+     * Set secret
+     * @param string $secret
+     * @return self
+     */
+    public function setSecret($secret);
+
+    /**
      * Returns the expiration time.
      * @return int
      */
     public function getExpiresAt();
+
+    /**
+     * Set expiresAt
+     * @param \DateTime $expiresAt
+     * @return self
+     */
+    public function setExpiresAt(\DateTime $expiresAt);
 
     /**
      * Returns the expiration delay.
@@ -41,13 +62,26 @@ interface TokenInterface
 
     /**
      * Returns the user for this token.
-     * @return \Bazinga\OAuthServerBundle\Model\UserInterface
+     * @return UserInterface
      */
     public function getUser();
 
     /**
+     * Sets the user for this token.
+     * @return self
+     */
+    public function setUser(UserInterface $user);
+
+    /**
      * Returns the consumer for this token.
-     * @return \Bazinga\OAuthServerBundle\Model\ConsumerInterface
+     * @return ConsumerInterface
      */
     public function getConsumer();
+
+    /**
+     * Set consumer
+     * @param ConsumerInterface $consumer
+     * @return self
+     */
+    public function setConsumer(ConsumerInterface $consumer);
 }

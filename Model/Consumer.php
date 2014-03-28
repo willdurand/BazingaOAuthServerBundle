@@ -5,8 +5,10 @@ namespace Bazinga\OAuthServerBundle\Model;
 /**
  * @author Robin van der Vleuten <robinvdvleuten@gmail.com>
  */
-class Consumer implements ConsumerInterface
+abstract class Consumer implements ConsumerInterface
 {
+    protected $id;
+
     /**
      * @var string
      */
@@ -30,9 +32,26 @@ class Consumer implements ConsumerInterface
     /**
      * {@inheritDoc}
      */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
     }
 
     /**
@@ -46,6 +65,15 @@ class Consumer implements ConsumerInterface
     /**
      * {@inheritDoc}
      */
+    public function setConsumerKey($consumerKey)
+    {
+        $this->consumerKey = $consumerKey;
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getConsumerSecret()
     {
         return $this->consumerSecret;
@@ -54,8 +82,26 @@ class Consumer implements ConsumerInterface
     /**
      * {@inheritDoc}
      */
+    public function setConsumerSecret($consumerSecret)
+    {
+        $this->consumerSecret = $consumerSecret;
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getCallback()
     {
         return $this->callback;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCallback($callback)
+    {
+        $this->callback = $callback;
+        return $this;
     }
 }

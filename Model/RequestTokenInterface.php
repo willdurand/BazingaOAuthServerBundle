@@ -14,4 +14,11 @@ interface RequestTokenInterface extends TokenInterface
      * @return string
      */
     public function getVerifier();
+
+    /**
+     * Sets the verifier string.
+     * @param string $verifier
+     * @return self
+     */
+    public function setVerifier($verifier);
 }

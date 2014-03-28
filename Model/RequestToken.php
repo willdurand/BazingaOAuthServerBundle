@@ -5,7 +5,7 @@ namespace Bazinga\OAuthServerBundle\Model;
 /**
  * @author Robin van der Vleuten <robinvdvleuten@gmail.com>
  */
-class RequestToken extends Token implements RequestTokenInterface
+abstract class RequestToken extends Token implements RequestTokenInterface
 {
     /**
      * @var string
@@ -18,5 +18,13 @@ class RequestToken extends Token implements RequestTokenInterface
     public function getVerifier()
     {
         return $this->verifier;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setVerifier($verifier)
+    {
+        $this->verifier = $verifier;
     }
 }
