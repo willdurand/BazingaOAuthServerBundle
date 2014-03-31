@@ -11,7 +11,7 @@ use Bazinga\OAuthServerBundle\Tests\TestCase;
  */
 class ConsumerProviderTest extends TestCase
 {
-    const CONSUMER_CLASS = 'Bazinga\OAuthServerBundle\Model\Consumer';
+    const CONSUMER_CLASS = 'Bazinga\OAuthServerBundle\Tests\Doctrine\Provider\DummyConsumer';
 
     /**
      * @var ConsumerProvider
@@ -48,7 +48,7 @@ class ConsumerProviderTest extends TestCase
 
     public function testGetClass()
     {
-        $this->assertEquals(static::CONSUMER_CLASS, $this->consumerProvider->getClass());
+        $this->assertEquals(static::CONSUMER_CLASS, $this->consumerProvider->getConsumerClass());
     }
 
     public function testGetConsumerBy()
@@ -74,4 +74,56 @@ class ConsumerProviderTest extends TestCase
 
         $this->consumerProvider->getConsumerByKey($consumerKey);
     }
+
+    public function testCreateConsumer()
+    {
+        $name = 'foo';
+        $callback = 'bar';
+
+        $this->objectManager->expects($this->once())
+            ->method('persist')
+            ->with($this->isInstanceOf(static::CONSUMER_CLASS));
+
+        $this->objectManager->expects($this->once())
+            ->method('flush');
+
+        $consumer = $this->consumerProvider->createConsumer($name, $callback);
+
+        $this->assertInstanceOf(static::CONSUMER_CLASS, $consumer);
+        $this->assertEquals($name, $consumer->getName());
+        $this->assertEquals($callback, $consumer->getCallback());
+    }
+
+    public function testDeleteConsumer()
+    {
+        $consumer = $this->getMock('Bazinga\OAuthServerBundle\Model\Consumer');
+
+        $this->objectManager->expects($this->once())
+            ->method('remove')
+            ->with($this->equalTo($consumer));
+
+        $this->objectManager->expects($this->once())
+            ->method('flush');
+
+        $this->consumerProvider->deleteConsumer($consumer);
+    }
+
+    public function testUpdateConsumer()
+    {
+        $consumer = $this->getMock('Bazinga\OAuthServerBundle\Model\Consumer');
+
+        $this->objectManager->expects($this->once())
+            ->method('persist')
+            ->with($this->equalTo($consumer));
+
+        $this->objectManager->expects($this->once())
+            ->method('flush');
+
+        $this->consumerProvider->updateConsumer($consumer);
+    }
+}
+
+class DummyConsumer extends Consumer
+{
+
 }

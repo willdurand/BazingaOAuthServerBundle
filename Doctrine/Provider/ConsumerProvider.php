@@ -2,6 +2,7 @@
 
 namespace Bazinga\OAuthServerBundle\Doctrine\Provider;
 
+use Bazinga\OAuthServerBundle\Model\ConsumerInterface;
 use Bazinga\OAuthServerBundle\Model\Provider\ConsumerProvider as BaseConsumerProvider;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
@@ -11,11 +12,6 @@ use Doctrine\Common\Persistence\ObjectRepository;
  */
 class ConsumerProvider extends BaseConsumerProvider
 {
-    /**
-     * @var string
-     */
-    private $class;
-
     /**
      * @var ObjectManager
      */
@@ -30,22 +26,15 @@ class ConsumerProvider extends BaseConsumerProvider
      * Constructor
      *
      * @param ObjectManager $objectManager A ObjectManager instance.
-     * @param string        $class
+     * @param string        $consumerClass
      */
-    public function __construct(ObjectManager $objectManager, $class)
+    public function __construct(ObjectManager $objectManager, $consumerClass)
     {
         $this->objectManager = $objectManager;
-        $this->class = $class;
 
-        $this->repository = $objectManager->getRepository($class);
-    }
+        $this->repository = $objectManager->getRepository($consumerClass);
 
-    /**
-      * {@inheritDoc}
-      */
-    public function getClass()
-    {
-        return $this->class;
+        parent::__construct($consumerClass);
     }
 
     /**
@@ -54,5 +43,23 @@ class ConsumerProvider extends BaseConsumerProvider
     public function getConsumerBy(array $criteria)
     {
         return $this->repository->findOneBy($criteria);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function deleteConsumer(ConsumerInterface $consumer)
+    {
+        $this->objectManager->remove($consumer);
+        $this->objectManager->flush();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function updateConsumer(ConsumerInterface $consumer)
+    {
+        $this->objectManager->persist($consumer);
+        $this->objectManager->flush();
     }
 }

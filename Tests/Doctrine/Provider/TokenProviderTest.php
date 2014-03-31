@@ -112,6 +112,7 @@ class TokenProviderTest extends TestCase
         $token = $this->tokenProvider->createRequestToken($consumer);
 
         $this->assertInstanceOf(static::REQUEST_TOKEN_CLASS, $token);
+        $this->assertEquals($consumer, $token->getConsumer());
     }
 
     public function testDeleteRequestToken()
@@ -193,6 +194,7 @@ class TokenProviderTest extends TestCase
         $token = $this->tokenProvider->createAccessToken($consumer, $user);
 
         $this->assertInstanceOf(static::ACCESS_TOKEN_CLASS, $token);
+        $this->assertEquals($consumer, $token->getConsumer());
     }
 
     public function testDeleteAccessToken()

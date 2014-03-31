@@ -13,19 +13,9 @@ use Doctrine\Common\Persistence\ObjectRepository;
 class TokenProvider extends BaseTokenProvider
 {
     /**
-     * @var string
-     */
-    private $requestTokenClass;
-
-    /**
      * ObjectRepository
      */
     private $requestTokenRepository;
-
-    /**
-     * @var string
-     */
-    private $accessTokenClass;
 
     /**
      * ObjectRepository
@@ -47,27 +37,11 @@ class TokenProvider extends BaseTokenProvider
     public function __construct(ObjectManager $objectManager, $requestTokenClass, $accessTokenClass)
     {
         $this->objectManager = $objectManager;
-        $this->requestTokenClass = $requestTokenClass;
-        $this->accessTokenClass = $accessTokenClass;
 
         $this->requestTokenRepository = $objectManager->getRepository($requestTokenClass);
         $this->accessTokenRepository = $objectManager->getRepository($accessTokenClass);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function getRequestTokenClass()
-    {
-        return $this->requestTokenClass;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getAccessTokenClass()
-    {
-        return $this->accessTokenClass;
+        parent::__construct($requestTokenClass, $accessTokenClass);
     }
 
     /**

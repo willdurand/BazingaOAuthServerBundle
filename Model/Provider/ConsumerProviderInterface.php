@@ -1,6 +1,7 @@
 <?php
 
 namespace Bazinga\OAuthServerBundle\Model\Provider;
+use Bazinga\OAuthServerBundle\Model\ConsumerInterface;
 
 /**
  * This interface represents an OAuth Consumer provider.
@@ -14,7 +15,16 @@ interface ConsumerProviderInterface
      *
      * @return string
      */
-    public function getClass();
+    public function getConsumerClass();
+
+    /**
+     * Create a consumer.
+     *
+     * @param string      $name
+     * @param string|null $callback
+     * @return \Bazinga\OAuthServerBundle\Model\ConsumerInterface
+     */
+    public function createConsumer($name, $callback = null);
 
     /**
      * @param array $criteria
@@ -27,4 +37,20 @@ interface ConsumerProviderInterface
      * @return \Bazinga\OAuthServerBundle\Model\ConsumerInterface
      */
     public function getConsumerByKey($consumerKey);
+
+    /**
+     * Deletes a consumer.
+     *
+     * @param ConsumerInterface $consumer
+     * @return void
+     */
+    public function deleteConsumer(ConsumerInterface $consumer);
+
+    /**
+     * Updates a consumer.
+     *
+     * @param ConsumerInterface $consumer
+     * @return void
+     */
+    public function updateConsumer(ConsumerInterface $consumer);
 }

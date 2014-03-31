@@ -14,12 +14,51 @@ use Bazinga\OAuthServerBundle\Util\Random;
 abstract class TokenProvider implements TokenProviderInterface
 {
     /**
+     * @var string
+     */
+    private $requestTokenClass;
+
+    /**
+     * @var string
+     */
+    private $accessTokenClass;
+
+    /**
+     * Constructor
+     *
+     * @param string        $accessTokenClass
+     * @param string        $requestTokenClass
+     */
+    public function __construct($requestTokenClass, $accessTokenClass)
+    {
+        $this->requestTokenClass = $requestTokenClass;
+        $this->accessTokenClass = $accessTokenClass;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRequestTokenClass()
+    {
+        return $this->requestTokenClass;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAccessTokenClass()
+    {
+        return $this->accessTokenClass;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function createRequestToken(ConsumerInterface $consumer)
     {
         $class = $this->getRequestTokenClass();
 
+        /** @var \Bazinga\OAuthServerBundle\Model\RequestTokenInterface $requestToken */
         $requestToken = new $class;
         $requestToken->setToken(Random::generateToken());
         $requestToken->setSecret(Random::generateToken());
@@ -65,6 +104,7 @@ abstract class TokenProvider implements TokenProviderInterface
     {
         $class = $this->getAccessTokenClass();
 
+        /** @var \Bazinga\OAuthServerBundle\Model\AccessTokenInterface $accessToken */
         $accessToken = new $class;
         $accessToken->setToken(Random::generateToken());
         $accessToken->setSecret(Random::generateToken());
