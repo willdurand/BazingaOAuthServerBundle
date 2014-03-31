@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping>
+
+    <mapped-superclass name="Bazinga\OAuthServerBundle\Model\Consumer">
+
+        <field name="name" fieldName="name" type="string" />
+
+        <field name="consumerKey" fieldName="consumerKey" type="string" />
+
+        <field name="consumerSecret" fieldName="consumerSecret" type="string" />
+
+        <field name="callback" fieldName="callback" type="string" />
+
+    </mapped-superclass>
+
+</doctrine-mapping>

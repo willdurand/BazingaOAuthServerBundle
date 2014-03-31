@@ -38,8 +38,123 @@ bazinga_oauth:
     resource: "@BazingaOAuthServerBundle/Resources/config/routing/routing.yml"
 ```
 
-That's all for the installation :-)
+Create the required OAuth classes by extending all abstract model classes from the bundle:
 
+### Consumer class
+
+``` php
+<?php
+// src/Acme/OAuthBundle/Entity/Consumer.php
+
+namespace Acme\OAuthBundle\Entity;
+
+use Bazinga\OAuthServerBundle\Model\Consumer as BaseConsumer;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="consumers")
+ */
+class Consumer extends BaseConsumer
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+}
+```
+
+### Request Token class
+
+``` php
+<?php
+// src/Acme/OAuthBundle/Entity/RequestToken.php
+
+namespace Acme\OAuthBundle\Entity;
+
+use Bazinga\OAuthServerBundle\Model\RequestToken as BaseRequestToken;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="request_tokens")
+ */
+class RequestToken extends BaseRequestToken
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Acme\OAuthBundle\Entity\Customer")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+     */
+    protected $consumer;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Acme\OAuthBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
+}
+```
+
+### Access Token class
+
+``` php
+<?php
+// src/Acme/OAuthBundle/Entity/AccessToken.php
+
+namespace Acme\OAuthBundle\Entity;
+
+use Bazinga\OAuthServerBundle\Model\AccessToken as BaseAccessToken;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="access_tokens")
+ */
+class AccessToken extends BaseAccessToken
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Acme\OAuthBundle\Entity\Customer")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+     */
+    protected $consumer;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Acme\OAuthBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
+}
+```
+
+Enable the correct datastore driver in the bundle's configuration and set all corresponding OAuth classes:
+
+``` yaml
+# app/config/config.yml
+bazinga_oauth:
+    mapping:
+        db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+        consumer_class: Acme\OAuthBundle\Entity\Consumer
+        request_token_class: Acme\OAuthBundle\Entity\RequestToken
+        access_token_class: Acme\OAuthBundle\Entity\AccessToken
+```
+
+That's all for the installation :-)
 
 ## Configuration
 In order to use this bundle, you have to configure it.
@@ -226,10 +341,9 @@ To enable it in your application, just set the `enable_xauth` configuration para
 
 ``` yaml
 # app/config/config.yml
-bazinga_o_auth:
+bazinga_oauth:
     enable_xauth:   true
 ```
-
 
 ## Extending things
 This bundle provides a set of interfaces that help you to create your own implementation

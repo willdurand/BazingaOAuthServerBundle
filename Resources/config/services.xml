@@ -30,18 +30,18 @@
             <argument type="service" id="router" />
             <argument type="service" id="templating" />
             <argument type="service" id="bazinga.oauth.server_service" />
-            <argument></argument> <!-- token provider -->
+            <argument type="service" id="bazinga.oauth.provider.token_provider" />
         </service>
         <service id="bazinga.oauth.controller.login" class="%bazinga.oauth.controller.login.class%">
             <argument type="service" id="templating" />
             <argument type="service" id="security.context" />
-            <argument></argument> <!-- token provider -->
+            <argument type="service" id="bazinga.oauth.provider.token_provider" />
         </service>
 
         <!-- OAuth server services -->
         <service id="bazinga.oauth.server_service">
-            <argument></argument> <!-- consumer provider -->
-            <argument></argument> <!-- token provider -->
+            <argument type="service" id="bazinga.oauth.provider.consumer_provider" />
+            <argument type="service" id="bazinga.oauth.provider.token_provider" />
             <argument></argument> <!-- nonce provider -->
             <argument type="service" id="logger" />
         </service>

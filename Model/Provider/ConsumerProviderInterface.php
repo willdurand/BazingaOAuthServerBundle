@@ -10,6 +10,19 @@ namespace Bazinga\OAuthServerBundle\Model\Provider;
 interface ConsumerProviderInterface
 {
     /**
+     * Returns the consumer's fully qualified class name.
+     *
+     * @return string
+     */
+    public function getClass();
+
+    /**
+     * @param array $criteria
+     * @return \Bazinga\OAuthServerBundle\Model\ConsumerInterface
+     */
+    public function getConsumerBy(array $criteria);
+
+    /**
      * @param $consumerKey
      * @return \Bazinga\OAuthServerBundle\Model\ConsumerInterface
      */

@@ -22,6 +22,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('bazinga_oauth_server');
 
         $this->addDefaultSection($rootNode);
+        $this->addMappingSection($rootNode);
         $this->addServiceSection($rootNode);
 
         return $treeBuilder;
@@ -35,6 +36,33 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
+    private function addMappingSection(ArrayNodeDefinition $node)
+    {
+        $supportedDrivers = array('orm', 'mongodb', 'couchdb');
+
+        $node
+            ->children()
+                ->arrayNode('mapping')
+                    ->isRequired()
+                    ->children()
+                        ->scalarNode('db_driver')
+                            ->validate()
+                                ->ifNotInArray($supportedDrivers)
+                                ->thenInvalid('The driver %s is not supported. Please choose one of '.json_encode($supportedDrivers))
+                            ->end()
+                            ->cannotBeOverwritten()
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                        ->scalarNode('consumer_class')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('request_token_class')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('access_token_class')->isRequired()->cannotBeEmpty()->end()
+                        ->scalarNode('model_manager_name')->defaultNull()->end()
+                    ->end()
+                ->end()
+            ->end();
+    }
+
     private function addServiceSection(ArrayNodeDefinition $node)
     {
         $node
@@ -42,8 +70,6 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('service')
                     ->isRequired()
                     ->children()
-                        ->scalarNode('consumer_provider')->isRequired()->cannotBeEmpty()->end()
-                        ->scalarNode('token_provider')->isRequired()->cannotBeEmpty()->end()
                         ->scalarNode('nonce_provider')->isRequired()->cannotBeEmpty()->end()
                     ->end()
                 ->end()

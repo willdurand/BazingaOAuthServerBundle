@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping>
+
+    <mapped-superclass name="Bazinga\OAuthServerBundle\Model\RequestToken">
+
+        <field name="token" fieldName="token" type="string" />
+
+        <field name="secret" fieldName="secret" type="string" />
+
+        <field name="expiresAt" fieldName="expiresAt" type="date" />
+
+        <field name="verifier" fieldName="verifier" type="string" />
+
+    </mapped-superclass>
+
+</doctrine-mapping>
