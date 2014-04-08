@@ -43,10 +43,10 @@ interface TokenInterface
 
     /**
      * Set expiresAt
-     * @param \DateTime $expiresAt
+     * @param int $expiresAt
      * @return self
      */
-    public function setExpiresAt(\DateTime $expiresAt);
+    public function setExpiresAt($expiresAt);
 
     /**
      * Returns the expiration delay.

@@ -19,8 +19,10 @@
             <directory>./</directory>
             <exclude>
                 <directory>./bin</directory>
-                <directory>./Tests</directory>
+                <directory>./Propel/map</directory>
+                <directory>./Propel/om</directory>
                 <directory>./Resources</directory>
+                <directory>./Tests</directory>
                 <directory>./vendor</directory>
             </exclude>
         </whitelist>

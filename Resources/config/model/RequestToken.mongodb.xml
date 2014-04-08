@@ -10,7 +10,7 @@
 
         <field name="secret" fieldName="secret" type="string" />
 
-        <field name="expiresAt" fieldName="expiresAt" type="date" />
+        <field name="expiresAt" fieldName="expiresAt" type="int" />
 
         <field name="verifier" fieldName="verifier" type="string" />
 

@@ -10,7 +10,7 @@
 
         <field name="secret" column="secret" type="string" />
 
-        <field name="expiresAt" column="expiresAt" type="date" />
+        <field name="expiresAt" column="expiresAt" type="int" />
 
     </mapped-superclass>
 

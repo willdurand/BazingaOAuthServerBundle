@@ -20,7 +20,7 @@ abstract class Token implements TokenInterface
     protected $secret;
 
     /**
-     * @var \DateTime
+     * @var int
      */
     protected $expiresAt;
 
@@ -87,7 +87,7 @@ abstract class Token implements TokenInterface
     /**
      * {@inheritDoc}
      */
-    public function setExpiresAt(\DateTime $expiresAt)
+    public function setExpiresAt($expiresAt)
     {
         $this->expiresAt = $expiresAt;
         return $this;
@@ -99,7 +99,7 @@ abstract class Token implements TokenInterface
     public function getExpiresIn()
     {
         if ($this->expiresAt) {
-            return $this->expiresAt->getTimestamp() - time();
+            return $this->expiresAt - time();
         }
 
         return PHP_INT_MAX;
@@ -111,7 +111,7 @@ abstract class Token implements TokenInterface
     public function hasExpired()
     {
         if ($this->expiresAt) {
-            return time() > $this->expiresAt->getTimestamp();
+            return time() > $this->expiresAt;
         }
 
         return false;

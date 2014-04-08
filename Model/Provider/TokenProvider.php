@@ -62,7 +62,7 @@ abstract class TokenProvider implements TokenProviderInterface
         $requestToken = new $class;
         $requestToken->setToken(Random::generateToken());
         $requestToken->setSecret(Random::generateToken());
-        $requestToken->setExpiresAt(\DateTime::createFromFormat('U', time() + 3600));
+        $requestToken->setExpiresAt(time() + 3600);
         $requestToken->setVerifier(Random::generateToken());
         $requestToken->setConsumer($consumer);
 

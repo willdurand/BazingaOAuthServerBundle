@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="default" namespace="Bazinga\OAuthServerBundle\Propel" defaultIdMethod="native">
+
+    <table name="bazinga_oauth_consumer" phpName="Consumer">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="name" type="varchar" />
+        <column name="consumer_key" type="varchar" />
+        <column name="consumer_secret" type="varchar" />
+        <column name="callback" type="varchar" />
+    </table>
+
+    <table name="bazing_oauth_token" phpName="Token" abstract="true">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="token" type="varchar" />
+        <column name="secret" type="varchar" />
+        <column name="expires_at" type="integer" />
+        <column name="consumer" type="object" />
+        <column name="user" type="object" />
+
+        <column name="verifier" type="varchar" />
+
+        <column name="type" type="varchar" inheritance="single">
+            <inheritance key="request_token" class="RequestToken" extends="Token"/>
+            <inheritance key="access_token" class="AccessToken" extends="Token"/>
+        </column>
+
+        <behavior name="typehintable">
+            <parameter name="consumer" value="\Bazinga\OAuthServerBundle\Model\ConsumerInterface" />
+            <parameter name="user" value="\Bazinga\OAuthServerBundle\Model\UserInterface" />
+        </behavior>
+    </table>
+
+</database>

@@ -38,7 +38,7 @@ class Configuration implements ConfigurationInterface
 
     private function addMappingSection(ArrayNodeDefinition $node)
     {
-        $supportedDrivers = array('orm', 'mongodb', 'couchdb');
+        $supportedDrivers = array('orm', 'mongodb', 'couchdb', 'propel');
 
         $node
             ->children()
