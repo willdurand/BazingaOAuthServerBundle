@@ -2,9 +2,10 @@
 
 namespace Bazinga\OAuthServerBundle\Propel;
 
+use Bazinga\OAuthServerBundle\Model\TokenInterface;
 use Bazinga\OAuthServerBundle\Propel\om\BaseToken;
 
-abstract class Token extends BaseToken
+abstract class Token extends BaseToken implements TokenInterface
 {
     /**
      * {@inheritDoc}

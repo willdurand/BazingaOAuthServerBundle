@@ -2,7 +2,6 @@
 
 namespace Bazinga\OAuthServerBundle\Tests\Propel\Provider;
 
-use Bazinga\OAuthServerBundle\Propel\Provider\ConsumerProvider;
 use Bazinga\OAuthServerBundle\Tests\TestCase;
 
 /**
@@ -13,7 +12,7 @@ class ConsumerProviderTest extends TestCase
     const CONSUMER_CLASS = 'Bazinga\OAuthServerBundle\Propel\Consumer';
 
     /**
-     * @var ConsumerProvider
+     * @var \Bazinga\OAuthServerBundle\Propel\Provider\ConsumerProvider
      */
     private $consumerProvider;
 
@@ -34,7 +33,7 @@ class ConsumerProviderTest extends TestCase
             ->getMock();
 
         $this->consumerProvider = $this->getMockBuilder('Bazinga\OAuthServerBundle\Propel\Provider\ConsumerProvider')
-            ->setConstructorArgs(array(static::CONSUMER_CLASS))
+            ->setConstructorArgs(array(self::CONSUMER_CLASS))
             ->setMethods(array('createConsumerQuery'))
             ->getMock();
 
@@ -45,7 +44,7 @@ class ConsumerProviderTest extends TestCase
 
     public function testGetClass()
     {
-        $this->assertEquals(static::CONSUMER_CLASS, $this->consumerProvider->getConsumerClass());
+        $this->assertEquals(self::CONSUMER_CLASS, $this->consumerProvider->getConsumerClass());
     }
 
     public function testGetConsumerBy()
@@ -78,7 +77,7 @@ class ConsumerProviderTest extends TestCase
 
     public function testUpdateConsumer()
     {
-        $consumer = $this->getMock('Bazinga\OAuthServerBundle\Propel\Consumer');
+        $consumer = $this->getMock(self::CONSUMER_CLASS);
 
         $consumer->expects($this->once())
             ->method('save');
@@ -100,7 +99,7 @@ class ConsumerProviderTest extends TestCase
 
     public function testDeleteConsumer()
     {
-        $consumer = $this->getMock('Bazinga\OAuthServerBundle\Propel\Consumer');
+        $consumer = $this->getMock(self::CONSUMER_CLASS);
 
         $consumer->expects($this->once())
             ->method('delete');

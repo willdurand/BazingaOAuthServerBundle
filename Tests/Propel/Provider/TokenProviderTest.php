@@ -2,7 +2,6 @@
 
 namespace Bazinga\OAuthServerBundle\Tests\Propel\Provider;
 
-use Bazinga\OAuthServerBundle\Propel\Provider\TokenProvider as BaseTokenProvider;
 use Bazinga\OAuthServerBundle\Tests\TestCase;
 
 /**
@@ -10,6 +9,8 @@ use Bazinga\OAuthServerBundle\Tests\TestCase;
  */
 class TokenProviderTest extends TestCase
 {
+    const TOKEN_CLASS = 'Bazinga\OAuthServerBundle\Propel\Token';
+
     const REQUEST_TOKEN_CLASS = 'Bazinga\OAuthServerBundle\Propel\RequestToken';
 
     const ACCESS_TOKEN_CLASS = 'Bazinga\OAuthServerBundle\Propel\AccessToken';
@@ -20,7 +21,7 @@ class TokenProviderTest extends TestCase
     private $query;
 
     /**
-     * @var TokenProvider
+     * @var \Bazinga\OAuthServerBundle\Propel\Provider\TokenProvider
      */
     private $tokenProvider;
 
@@ -36,7 +37,7 @@ class TokenProviderTest extends TestCase
             ->getMock();
 
         $this->tokenProvider = $this->getMockBuilder('Bazinga\OAuthServerBundle\Propel\Provider\TokenProvider')
-            ->setConstructorArgs(array(static::REQUEST_TOKEN_CLASS, static::ACCESS_TOKEN_CLASS))
+            ->setConstructorArgs(array(self::REQUEST_TOKEN_CLASS, self::ACCESS_TOKEN_CLASS))
             ->setMethods(array('createRequestTokenQuery', 'createAccessTokenQuery'))
             ->getMock();
 
@@ -51,12 +52,12 @@ class TokenProviderTest extends TestCase
 
     public function testGetRequestTokenClass()
     {
-        $this->assertEquals(static::REQUEST_TOKEN_CLASS, $this->tokenProvider->getRequestTokenClass());
+        $this->assertEquals(self::REQUEST_TOKEN_CLASS, $this->tokenProvider->getRequestTokenClass());
     }
 
     public function testGetAccessTokenClass()
     {
-        $this->assertEquals(static::ACCESS_TOKEN_CLASS, $this->tokenProvider->getAccessTokenClass());
+        $this->assertEquals(self::ACCESS_TOKEN_CLASS, $this->tokenProvider->getAccessTokenClass());
     }
 
     public function testLoadRequestTokenBy()
@@ -125,7 +126,7 @@ class TokenProviderTest extends TestCase
 
     public function testUpdateToken()
     {
-        $token = $this->getMock(static::REQUEST_TOKEN_CLASS);
+        $token = $this->getMock(self::TOKEN_CLASS);
 
         $token->expects($this->once())
             ->method('save');
@@ -147,7 +148,7 @@ class TokenProviderTest extends TestCase
 
     public function testDeleteToken()
     {
-        $token = $this->getMock(static::REQUEST_TOKEN_CLASS);
+        $token = $this->getMock(self::TOKEN_CLASS);
 
         $token->expects($this->once())
             ->method('delete');
