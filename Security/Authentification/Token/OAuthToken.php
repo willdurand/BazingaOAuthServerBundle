@@ -61,7 +61,7 @@ class OAuthToken extends AbstractToken
      */
     public function setRequestUrl($requestUrl)
     {
-        return $this->requestUrl;
+        $this->requestUrl = $requestUrl;
     }
 
     /**
