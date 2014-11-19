@@ -5,8 +5,8 @@ namespace Bazinga\OAuthServerBundle\Model\Provider;
 use Bazinga\OAuthServerBundle\Model\AccessTokenInterface;
 use Bazinga\OAuthServerBundle\Model\ConsumerInterface;
 use Bazinga\OAuthServerBundle\Model\RequestTokenInterface;
-use Bazinga\OAuthServerBundle\Model\UserInterface;
 use Bazinga\OAuthServerBundle\Util\Random;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @author Robin van der Vleuten <robinvdvleuten@gmail.com>

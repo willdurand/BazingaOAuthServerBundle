@@ -132,7 +132,7 @@ class TokenProviderTest extends TestCase
     public function testSetUserForRequestToken()
     {
         $token = new DummyRequestToken();
-        $user = $this->getMock('Bazinga\OAuthServerBundle\Model\UserInterface');
+        $user = $this->getMock('Symfony\Component\Security\Core\User\UserInterface');
 
         $this->objectManager->expects($this->once())
             ->method('persist')
@@ -182,7 +182,7 @@ class TokenProviderTest extends TestCase
     public function testCreateAccessToken()
     {
         $consumer = $this->getMock('Bazinga\OAuthServerBundle\Model\ConsumerInterface');
-        $user = $this->getMock('Bazinga\OAuthServerBundle\Model\UserInterface');
+        $user = $this->getMock('Symfony\Component\Security\Core\User\UserInterface');
 
         $this->objectManager->expects($this->once())
             ->method('persist')

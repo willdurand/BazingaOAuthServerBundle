@@ -5,8 +5,9 @@ namespace Bazinga\OAuthServerBundle\Service;
 use Bazinga\OAuthServerBundle\Model\ConsumerInterface;
 use Bazinga\OAuthServerBundle\Model\RequestTokenInterface;
 use Bazinga\OAuthServerBundle\Model\AccessTokenInterface;
-use Bazinga\OAuthServerBundle\Model\UserInterface;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * OAuth version 1.0.

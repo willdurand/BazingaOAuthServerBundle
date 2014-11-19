@@ -2,6 +2,8 @@
 
 namespace Bazinga\OAuthServerBundle\Model;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * @author Robin van der Vleuten <robinvdvleuten@gmail.com>
  */

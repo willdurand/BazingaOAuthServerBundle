@@ -2,6 +2,8 @@
 
 namespace Bazinga\OAuthServerBundle\Model;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * This interface represents an OAuth token.
  *
