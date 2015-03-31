@@ -201,7 +201,9 @@ class OAuthServerService extends OAuthAbstractServerService
             // Out Of Band
             return $authorizeString;
         } else {
-            return sprintf('%s?%s', $oauth_callback, $authorizeString);
+            $format = (strpos($oauth_callback, '?') !== false) ? '%s&%s' : '%s?%s';
+
+            return sprintf($format, $oauth_callback, $authorizeString);
         }
     }
 
