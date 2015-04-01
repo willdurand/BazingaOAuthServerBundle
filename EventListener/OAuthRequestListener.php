@@ -77,6 +77,17 @@ class OAuthRequestListener
                     $authorization = $headers['Authorization'];
                 }
             }
+
+            if ($authorization === null) {
+                // Check to see if the header was added to $_SERVER by .htaccess
+                //     RewriteCond %{HTTP:Authorization} .+
+                //     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+                if ($request->server->has('REDIRECT_HTTP_AUTHORIZATION')) {
+                    $authorization = $request->server->get('REDIRECT_HTTP_AUTHORIZATION');
+                } elseif ($request->server->has('HTTP_AUTHORIZATION')) {
+                    $authorization = $request->server->get('HTTP_AUTHORIZATION');
+                }
+            }
         } else {
             $authorization = $request->headers->get('authorization');
         }
