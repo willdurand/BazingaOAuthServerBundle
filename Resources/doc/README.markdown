@@ -335,7 +335,7 @@ security:
 **THIS PART IS NOT WORKING AT THE MOMENT !**
 
 [xAuth](http://dev.twitter.com/pages/xauth) is still OAuth but it provides a way to exchange username
-ans password for an OAuth access token. Be sure to approve applications that use this protocol.
+and password for an OAuth access token. Be sure to approve applications that use this protocol.
 
 To enable it in your application, just set the `enable_xauth` configuration parameter to `true`.
 
