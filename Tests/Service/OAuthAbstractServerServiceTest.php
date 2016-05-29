@@ -128,6 +128,18 @@ class OAuthAbstractServerServiceTest extends TestCase
         $this->assertEquals('', $result, 'Null input means empty output string');
     }
 
+    public function testNormalizeRequestParametersEncoded()
+    {
+        $array  = array(
+                'a' => 'bar',
+                'b' => 'email:test',
+                'c' => 'example@example.com'
+        );
+
+        $result = $this->service->normalizeRequestParameters($array);
+        $this->assertEquals('a=bar&b=email%3Atest&c=example%40example.com', $result, 'Test basic encoded params normalization');
+    }
+
     public function testSendToken()
     {
         $token  = $this->getTokenMock('my_token', 'MySup3rSecr3t', null);
