@@ -170,9 +170,9 @@ class ConcreteOauthServerService extends OAuthAbstractServerService
         return parent::checkVersion($oauthVersion);
     }
 
-    public function normalizeRequestParameters($requestParameters)
+    public function normalizeRequestParameters($requestParameters, $parentKey = '')
     {
-        return parent::normalizeRequestParameters($requestParameters);
+        return parent::normalizeRequestParameters($requestParameters, $parentKey);
     }
 
     public function approveSignature(ConsumerInterface $consumer, TokenInterface $token = null, $requestParameters, $requestMethod, $requestUrl)
