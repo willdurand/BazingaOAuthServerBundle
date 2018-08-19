@@ -1,13 +1,18 @@
 language: php
 
-php:
-    - 5.3
-    - 5.4
-    - 5.5
-    - 5.6
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+matrix:
+  include:
+    - php: 5.3
+      dist: precise
+    - php: 5.4
+    - php: 5.5
+    - php: 5.6
 
 before_script:
-  - composer self-update
-  - composer install --dev --prefer-source
+  - composer install
 
 phpunit: phpunit --coverage-text
