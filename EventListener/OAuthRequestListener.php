@@ -97,10 +97,10 @@ class OAuthRequestListener
                 continue;
             }
 
-            $key   = trim($split[0]);
-            $value = str_replace('"', '', trim($split[1]));
+            $key   = rawurldecode(trim($split[0]));
+            $value = rawurldecode(str_replace('"', '', trim($split[1])));
 
-            $params[$key] = rawurldecode($value);
+            $params[$key] = $value;
         }
 
         return $params;
