@@ -293,34 +293,38 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
 
     /**
      * Normalize request parameters.
+     *
      * @see http://oauth.net/core/1.O/#rfc.section.9.1.1
      *
-     * @param  array  $requestParameters An array of request parameters to normalize.
+     * @param  array $requestParameters An array of request parameters to normalize.
+     * @param string $parentKey
      * @return string
      */
-    protected function normalizeRequestParameters($requestParameters)
+    protected function normalizeRequestParameters($requestParameters, $parentKey = '')
     {
-        if (null === $requestParameters) {
+        if (empty($requestParameters)) {
             return '';
         }
 
-        ksort($requestParameters);
-
         $normalizedParameters = array();
         foreach ($requestParameters as $key => $value) {
-            if ('oauth_signature' !== $key) {
-                if (is_array($value)) {
-                    $sortedValues = $value;
+            if ('oauth_signature' === $key) {
+                continue;
+            }
 
-                    sort($sortedValues);
-                    foreach ($sortedValues as $sortedValue) {
-                        $normalizedParameters[] = rawurlencode($key) . '=' . rawurlencode($sortedValue);
-                    }
-                } else {
-                    $normalizedParameters[] = rawurlencode($key) . '=' . rawurlencode($value);
-                }
+            if (!empty($parentKey)) {
+                // Multidimensional array; using foo=bar&foo=baz rather than foo[bar]=baz&foo[baz]=bar
+                $key = $parentKey;
+            }
+
+            if (is_array($value)) {
+                $normalizedParameters[] = $this->normalizeRequestParameters($value, $key);
+            } else {
+                $normalizedParameters[] = rawurlencode($key) . '=' . rawurlencode($value);
             }
         }
+
+        sort($normalizedParameters, SORT_STRING);
 
         return implode('&', $normalizedParameters);
     }
