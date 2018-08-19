@@ -128,6 +128,30 @@ class OAuthAbstractServerServiceTest extends TestCase
         $this->assertEquals('', $result, 'Null input means empty output string');
     }
 
+    public function testNormalizeRequestParametersWithNestedArray()
+    {
+        $array = array(
+            'b' => array(
+                array(
+                    'b' => 'foo',
+                    'd' => 'bar',
+                    'a' => 'baz',
+                )
+            ),
+            'z' => array(
+                array(
+                    'b' => 'foo',
+                    'd' => 'bar',
+                    'a' => 'baz',
+                )
+            ),
+            'a' => 'bar',
+        );
+
+        $result = $this->service->normalizeRequestParameters($array);
+        $this->assertEquals('a=bar&b=bar&b=baz&b=foo&z=bar&z=baz&z=foo', $result, 'Nested arrays have to be sorted and their values too');
+    }
+
     public function testSendToken()
     {
         $token  = $this->getTokenMock('my_token', 'MySup3rSecr3t', null);
