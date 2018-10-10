@@ -312,7 +312,7 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
                 continue;
             }
 
-            if (!empty($parentKey)) {
+            if ($parentKey !== '') {
                 // Multidimensional array; using foo=bar&foo=baz rather than foo[bar]=baz&foo[baz]=bar
                 $key = $parentKey;
             }
