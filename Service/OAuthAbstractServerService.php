@@ -308,7 +308,7 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
 
         $normalizedParameters = array();
         foreach ($requestParameters as $key => $value) {
-            if ('oauth_signature' === $key) {
+            if ('oauth_signature' === $key || empty($value)) {
                 continue;
             }
 
@@ -324,6 +324,7 @@ abstract class OAuthAbstractServerService implements OAuthServerServiceInterface
             }
         }
 
+        $normalizedParameters = array_filter($normalizedParameters);
         sort($normalizedParameters, SORT_STRING);
 
         return implode('&', $normalizedParameters);
