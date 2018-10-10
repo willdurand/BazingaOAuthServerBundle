@@ -46,7 +46,7 @@ class OAuthRequestListener
      */
     protected function filterRequestParameters(Request $request)
     {
-        return array_merge(
+        return array_replace(
             $this->parseAuthorizationHeader($request),
             $request->query->all(),
             $request->request->all()
