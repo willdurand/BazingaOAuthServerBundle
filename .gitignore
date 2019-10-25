@@ -2,3 +2,7 @@
 /Propel/om/
 /Propel/map/
 /vendor/
+.*
+!.gitignore
+!.htaccess
+!.gitkeep
