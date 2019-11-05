@@ -20,7 +20,8 @@
             <argument>%bazinga.oauth.model.access_token.class%</argument>
         </service>
 
-        <service id="bazinga.oauth.entity_manager" factory-service="doctrine" factory-method="getManager" class="Doctrine\ORM\EntityManager" public="false">
+        <service id="bazinga.oauth.entity_manager" class="Doctrine\ORM\EntityManager" public="false">
+            <factory service="doctrine" method="getManager" />
             <argument>%bazinga.oauth.model_manager_name%</argument>
         </service>
     </services>
