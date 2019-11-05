@@ -34,8 +34,9 @@
         </service>
         <service id="bazinga.oauth.controller.login" class="%bazinga.oauth.controller.login.class%">
             <argument type="service" id="templating" />
-            <argument type="service" id="security.context" />
             <argument type="service" id="bazinga.oauth.provider.token_provider" />
+            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="security.authorization_checker" />
         </service>
 
         <!-- OAuth server services -->
@@ -63,7 +64,7 @@
         </service>
         <service id="bazinga.oauth.security.authentication.listener"
             class="%bazinga.oauth.security.authentication.listener.class%" public="false">
-            <argument type="service" id="security.context"/>
+            <argument type="service" id="security.token_storage"/>
             <argument type="service" id="security.authentication.manager" />
         </service>
 
