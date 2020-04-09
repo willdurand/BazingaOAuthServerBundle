@@ -46,7 +46,7 @@ class OAuthRequestListener
      */
     protected function filterRequestParameters(Request $request)
     {
-        return array_merge(
+        return array_replace(
             $this->parseAuthorizationHeader($request),
             $request->query->all(),
             $request->request->all()
@@ -97,10 +97,10 @@ class OAuthRequestListener
                 continue;
             }
 
-            $key   = trim($split[0]);
-            $value = str_replace('"', '', trim($split[1]));
+            $key   = rawurldecode(trim($split[0]));
+            $value = rawurldecode(str_replace('"', '', trim($split[1])));
 
-            $params[$key] = rawurldecode($value);
+            $params[$key] = $value;
         }
 
         return $params;
