@@ -5,10 +5,12 @@ namespace Bazinga\OAuthServerBundle\Security\Firewall;
 use Bazinga\OAuthServerBundle\Security\Authentification\Token\OAuthToken;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Firewall\ListenerInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
  * @author William DURAND <william.durand1@gmail.com>
@@ -16,9 +18,9 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 class OAuthListener implements ListenerInterface
 {
     /**
-     * @var SecurityContextInterface
+     * @var TokenStorageInterface
      */
-    protected $securityContext;
+    protected $tokenStorage;
 
     /**
      * @var AuthenticationManagerInterface
@@ -26,12 +28,12 @@ class OAuthListener implements ListenerInterface
     protected $authenticationManager;
 
     /**
-     * @param SecurityContextInterface       $securityContext       The security context.
+     * @param TokenStorageInterface          $securityContext       The security context.
      * @param AuthenticationManagerInterface $authenticationManager The authentification manager.
      */
-    public function __construct(SecurityContextInterface $securityContext, AuthenticationManagerInterface $authenticationManager)
+    public function __construct(TokenStorageInterface $tokenStorage, AuthenticationManagerInterface $authenticationManager)
     {
-        $this->securityContext = $securityContext;
+        $this->tokenStorage          = $tokenStorage;
         $this->authenticationManager = $authenticationManager;
     }
 
@@ -55,7 +57,7 @@ class OAuthListener implements ListenerInterface
             $returnValue = $this->authenticationManager->authenticate($token);
 
             if ($returnValue instanceof TokenInterface) {
-                return $this->securityContext->setToken($returnValue);
+                return $this->tokenStorage->setToken($returnValue);
             } elseif ($returnValue instanceof Response) {
                 return $event->setResponse($returnValue);
             }

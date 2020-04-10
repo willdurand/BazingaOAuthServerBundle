@@ -20,7 +20,8 @@
             <argument>%bazinga.oauth.model.access_token.class%</argument>
         </service>
 
-        <service id="bazinga.oauth.document_manager" factory-service="doctrine_mongodb" factory-method="getManager" class="Doctrine\ODM\MongoDB\DocumentManager" public="false">
+        <service id="bazinga.oauth.document_manager" class="Doctrine\ODM\MongoDB\DocumentManager" public="false">
+            <factory service="doctrine_mongodb" method="getManager" />
             <argument>%bazinga.oauth.model_manager_name%</argument>
         </service>
     </services>
